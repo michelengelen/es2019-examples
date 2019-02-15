@@ -8,7 +8,7 @@ import Home from 'container/home';
 const paths = [
   {
     path: '/',
-    name: 'Introduction',
+    name: 'Einleitung',
     component: Home,
     exact: true,
   },

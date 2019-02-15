@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Drawer from '@material-ui/core/Drawer';
+import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,7 +23,9 @@ const styles = theme => ({
     display: 'flex',
   },
   appBar: {
+    marginLeft: drawerWidth,
     zIndex: theme.zIndex.drawer + 1,
+    width: `calc(100% - ${drawerWidth}px)`,
   },
   drawer: {
     width: drawerWidth,
@@ -35,7 +38,10 @@ const styles = theme => ({
     flexGrow: 1,
     padding: theme.spacing.unit * 3,
   },
-  toolbar: theme.mixins.toolbar,
+  toolbar: {
+    ...theme.mixins.toolbar,
+    padding: theme.spacing.unit * 2,
+  },
 });
 
 const NavigationList = props => (
@@ -64,7 +70,7 @@ const Navigation = withRouter(props => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap>
-            {currentPathTitle}
+            {`${currentPathTitle}`}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -75,7 +81,12 @@ const Navigation = withRouter(props => {
           paper: classes.drawerPaper,
         }}
       >
-        <div className={classes.toolbar} />
+        <div className={classes.toolbar}>
+          <Typography variant="h6" color="textSecondary">
+            ECMAScript 2019
+          </Typography>
+        </div>
+        <Divider />
         <NavigationList paths={paths} />
       </Drawer>
       <main className={classes.content}>
