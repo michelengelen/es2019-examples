@@ -18,3 +18,7 @@ code {
   display: flex;
   align-items: stretch;
 }
+
+a {
+  text-decoration: none;
+}

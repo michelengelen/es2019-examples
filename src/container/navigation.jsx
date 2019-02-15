@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
+import HomeIcon from '@material-ui/icons/Home';
 
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom';
@@ -42,7 +43,7 @@ const NavigationList = props => (
     {props.paths.map(({ path, name }) => (
       <ListItem button key={name}>
         <ListItemIcon>
-          <StarIcon />
+          <HomeIcon />
         </ListItemIcon>
         <Link to={path}>
           <ListItemText primary={name} />
