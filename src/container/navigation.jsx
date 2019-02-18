@@ -46,14 +46,12 @@ const styles = theme => ({
 const NavigationList = props => (
   <List>
     {props.paths.map(({ path, name, icon }) => (
-      <ListItem button key={name}>
-        <ListItemIcon>
-          {icon}
-        </ListItemIcon>
-        <Link to={path}>
+      <Link to={path}>
+        <ListItem button key={name}>
+          <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText primary={name} />
-        </Link>
-      </ListItem>
+        </ListItem>
+      </Link>
     ))}
   </List>
 );
@@ -91,7 +89,7 @@ const Navigation = withRouter(props => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container>
-          <Grid item xs={9}>
+          <Grid item xs={12}>
             {children}
           </Grid>
         </Grid>

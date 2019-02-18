@@ -44,35 +44,22 @@ const styles = theme => ({
   },
 });
 
-const Component = () => {
-  const codeString =
-`const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit,
-  },
-  root: {
-    display: 'flex',
-    flexGrow: 1,
-    alignItems: 'stretch',
-  },
-  content: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    height: '100%',
-  },
-  stretch: {
-    display: 'flex',
-    alignItems: 'stretch',
-  },
-});`;
-  return <SyntaxHighlighter language='javascript' style={prismStyle}>{codeString}</SyntaxHighlighter>;
+const CodeBox = ({ code }) => {
+  return (
+    <SyntaxHighlighter language="javascript" style={prismStyle}>
+      {code}
+    </SyntaxHighlighter>
+  );
 };
+
+const flatSyntax = `// create new nested Array
+const nestedArray = [1, 2, 3, [4, [5, 6], 7, [8, 9]]];
+
+// call flat() "directly" from the array
+const newFlatArray1 = nestedArray.flat(2);
+
+// call flat() from Prototype
+const newFlatArray2 = Array.prototype.flat.call(nestedArray, 1);`;
 
 const FeatureArrayFlat = withStyles(styles)(props => {
   const { classes } = props;
@@ -81,15 +68,41 @@ const FeatureArrayFlat = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            What the heck is ECMAScript?
+            <code>Array.prototype.flat()</code> oder <code>[].flat()</code>
           </Typography>
-          <Component />
           <Typography variant="body1" gutterBottom>
-            Vielen von uns ist bekannt, dass <code>ECMAScript</code> der Sprachstandard ist auf dem
-            Javascript basiert. Dieser ist keinesfalls in Stein gemeißelt, sondern unterliegt einem
-            steten Wandel. Wie genau dieser Wandel vonstatten geht und wer eigentlich die
-            Entschidungen trifft welche Features implementiert werden möchte ich hier einmal kurz
-            anreissen.
+            Mithilfe dieser neuen prototype-funktion ist es möglich ein in mehrere Ebenen
+            verschachteltes <code>Array</code> auf eine Ebene zu reduzieren. Der Rückgabewert ist
+            ein neues (flaches) <code>Array</code>.
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="body1" gutterBottom>
+            <strong>Syntax: </strong>
+            <code>
+              Array.prototype.flat.call([], <em>depth</em>)
+            </code>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Short Syntax: </strong>
+            <code>
+              [].flat(<em>depth</em>)
+            </code>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Parameter: </strong>
+            <code>depth</code>
+            <code>{'{number = 1}'}</code>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Return: </strong>
+            <code>Array</code>
+          </Typography>
+          <CodeBox code={flatSyntax} />
+          <Typography variant="body1" gutterBottom>
+            Die neue Prototype-Funktion <code>flat()</code> kann, wie bei allen Protoype-Funktionen,
+            entweder per <code>call()</code> vom Protoypen selbst oder per Prototype-Chain-Zugriff
+            erfolgen.
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
@@ -184,7 +197,8 @@ const FeatureArrayFlat = withStyles(styles)(props => {
                 </Typography>
                 <Divider variant="middle" className={classes.spacer} />
                 <Typography variant="body1">
-                  Feature-Proposals, die es in diese Stufe geschafft haben werden mit sehr großer Wahrscheinlichkeit in der neuen ECMAScript-Version implementiert.
+                  Feature-Proposals, die es in diese Stufe geschafft haben werden mit sehr großer
+                  Wahrscheinlichkeit in der neuen ECMAScript-Version implementiert.
                 </Typography>
               </Paper>
             </Grid>

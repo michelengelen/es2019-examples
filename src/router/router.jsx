@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import StarIcon from '@material-ui/icons/Star';
 import HomeIcon from '@material-ui/icons/Home';
+import NewReleases from '@material-ui/icons/NewReleases';
+import Code from '@material-ui/icons/Code';
 
 import Navigation from 'container/navigation';
 import NoMatch from 'container/nomatch';
@@ -23,21 +24,21 @@ const paths = [
     path: '/overview',
     name: 'ES10 Features',
     component: FeatureOverview,
-    icon: <StarIcon />,
+    icon: <NewReleases />,
     exact: true,
   },
   {
     path: '/overview/es10-flat',
     name: 'Array.prototype.flat()',
     component: FeatureArrayFlat,
-    icon: <StarIcon />,
+    icon: <Code />,
     exact: true,
   },
   {
     path: '/overview/es10-flatMap',
     name: 'Array.prototype.flatmap()',
     component: FeatureArrayFlatmap,
-    icon: <StarIcon />,
+    icon: <Code />,
     exact: true,
   },
 ];
