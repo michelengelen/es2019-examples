@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Grid from '@material-ui/core/Grid';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,13 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import StarIcon from '@material-ui/icons/Star';
-import HomeIcon from '@material-ui/icons/Home';
 
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, Link } from 'react-router-dom';
 
-const drawerWidth = 240;
+const drawerWidth = 320;
 
 const styles = theme => ({
   root: {
@@ -46,10 +45,10 @@ const styles = theme => ({
 
 const NavigationList = props => (
   <List>
-    {props.paths.map(({ path, name }) => (
+    {props.paths.map(({ path, name, icon }) => (
       <ListItem button key={name}>
         <ListItemIcon>
-          <HomeIcon />
+          {icon}
         </ListItemIcon>
         <Link to={path}>
           <ListItemText primary={name} />
@@ -91,7 +90,11 @@ const Navigation = withRouter(props => {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        {children}
+        <Grid container>
+          <Grid item xs={9}>
+            {children}
+          </Grid>
+        </Grid>
       </main>
     </div>
   );
