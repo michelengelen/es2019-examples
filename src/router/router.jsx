@@ -6,6 +6,8 @@ import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import CodeIcon from '@material-ui/icons/Code';
 import ScheduleIcon from '@material-ui/icons/Schedule';
 
+import ScrollToTop from './scrollToTop';
+
 import Navigation from 'container/navigation';
 import NoMatch from 'container/nomatch';
 import EsIntroduction from 'pages/esIntroduction';
@@ -53,15 +55,17 @@ const paths = [
 ];
 
 const AppRouter = () => (
-  <Router>
-    <Navigation paths={paths}>
-      <Switch>
-        {paths.map(path => (
-          <Route {...path} key={`route_${path.name}`}/>
-        ))}
-        <Route component={NoMatch} />
-      </Switch>
-    </Navigation>
+  <Router onUpdate={() => window.scrollTo(0, 0)}>
+    <ScrollToTop>
+      <Navigation paths={paths}>
+        <Switch>
+          {paths.map(path => (
+            <Route {...path} key={`route_${path.name}`} />
+          ))}
+          <Route component={NoMatch} />
+        </Switch>
+      </Navigation>
+    </ScrollToTop>
   </Router>
 );
 

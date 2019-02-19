@@ -45,9 +45,9 @@ const styles = theme => ({
 
 const NavigationList = props => (
   <List>
-    {props.paths.map(({ path, name, icon }) => (
+    {props.paths.map(({ path, currentPath, name, icon }) => (
       <Link to={path}>
-        <ListItem button key={name}>
+        <ListItem button key={name} selected={path === props.currentPath}>
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText primary={name} />
         </ListItem>
@@ -84,7 +84,7 @@ const Navigation = withRouter(props => {
           </Typography>
         </div>
         <Divider />
-        <NavigationList paths={paths} />
+        <NavigationList paths={paths} currentPath={location.pathname} />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />

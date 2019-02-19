@@ -74,6 +74,50 @@ console.log(nestedArray.flat(2));
 console.log(nestedArray.flat(Infinity));
 // expected result: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
 
+const legacyFlatten = `// to enable deep level flatten use recursion with reduce and concat
+var arr1 = [1, 2, 3, [4, 5, 6, 7, [8, 9]]];
+
+function flattenArray(arr1) {
+  return arr1.reduce((acc, val) => Array.isArray(val)
+    ? acc.concat(flattenArray(val))
+    : acc.concat(val), []);
+}
+
+console.log(flattenArray(arr1));
+// expected result: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
+
+const insertConditionally = `// sample condition
+const condition = true;
+
+// array to be conditionally extended
+const arr = ['b'];
+
+console.log(Arrayprototype.flat.call([
+  (condition ? ['a'] : []),
+  arr,
+], Infinity));
+// expected result: ['a', 'b']`;
+
+const flattenPromises = `// asynchronous function to download files from an array of urls
+async function downloadFiles(urls) {
+  const downloadAttempts = await Promises.all(
+    urls.map(url => downloadFile(url))
+  );
+
+  return downloadAttempts.flat(Infinity);
+}
+
+// asynchronous function to download one file
+async function downloadFile(url) {
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    return [text];
+  } catch {
+    return [];
+  }
+}`;
+
 const FeatureArrayFlat = withStyles(styles)(props => {
   const { classes } = props;
   return (
@@ -132,102 +176,32 @@ const FeatureArrayFlat = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            Historie, Gegenwart und Zukunft
+            Legacy Ansatz
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Die erste Version von ECMAScript ist im Jahre 1997 entstanden um den Standard für die,
-            damals noch neue, Sprache JavaScript zu bilden. Federführend war hier{' '}
-            <Link href="https://en.wikipedia.org/wiki/Guy_L._Steele_Jr.">Guy Lewis Stewart</Link>,
-            der damit den Grundstein ES1 bildete.
+            Wollte man diesen Effekt ohne die neue Prototpe-Funktion erzielen musste man relativ
+            umständlich unter Zuhilfenahme von <code>Array.prototype.reduce</code> und{' '}
+            <code>Array.prototype.concat</code> eine rekursive Funktion einsetzen.
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Mittlerweile existiert für die Ausarbeitung der Spezifikationen ein Gremium:{' '}
-            <Link href="https://github.com/tc39">Technical Committee 39 [TC39]</Link>. Dieses setzt
-            sich aus Entwicklern aus den unterschiedlichsten Bereichen zusammen und entscheidet über
-            die Aufnahme neuer Features, Refinements oder Reworks innerhalb der Spezifikationen.
-            Jeder der eingereichten Vorschläge, seien es neue Prototyp-Funktionen oder simple
-            Umbenennungen, durchläuft in dem Aufnahmeprozess bis zu fünf Stufen.
-          </Typography>
+          <CodeBox code={legacyFlatten} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            Die 5 Stufen
+            <code>Array.prototype.flat</code> im Einsatz
           </Typography>
-          <Grid container spacing={32} className={classes.stretch}>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 0</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Strawman / Ideas</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Der Beginn einer jeden Spezifikation: Eine grundlegende Idee zur Verbesserung der
-                  Sprache ohne genauere Ausarbeitung oder Implementation.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 1</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Proposals</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  In dieser Stufe befinden sich die Vorschläge, die von einem sogenannten "Champion"
-                  (Fürsprecher aus dem Gremium) für potenziell förderungswürdig erachtet werden.
-                  Eine erste Implementation der Funktionalität wird erwartet ist aber nicht
-                  Vorraussetzung. Die Identifikation von möglichen Lösungsansätzen und potenziellen
-                  Schwierigkeiten bei der Umsetzung sollte hier geschehen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 2</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Drafts</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Proposals, die es bis in diese Stufe geschafft haben werden ab jetzt genauer
-                  ausgearbeitet und als erster Vorschlag in der Sprachumgebung eingesetzt. Zudem
-                  sollte die genaue Spezifikation des Proposals bereits vorliegen, auch wenn nicht
-                  erwartet wird, dass diese vollständig und fehlerfrei ist.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 3</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Candidates</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Nach der Draft-Phase und der damit verbundenen experimentellen Implementierung
-                  erfolgt hier nun ein ausgeweiteter Test unter Ausweitung der Anwendergruppe.
-                  Spezifikation, Syntax und Semantik müssen dafür schon in sehr ausgereifter,
-                  idealerweise aber in finaler Form vorliegen, denn Anpassungen werden in dieser
-                  Stufe nur noch akzeptiert, wenn kritische Indikatoren dies notwendig machen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 4</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Finished / Approved</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Feature-Proposals, die es in diese Stufe geschafft haben werden mit sehr großer
-                  Wahrscheinlichkeit in der neuen ECMAScript-Version implementiert.
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
+          <Typography variant="body1" gutterBottom>
+            Als einfacher Einstzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
+            in ein Array anzuführen.
+          </Typography>
+          <CodeBox code={insertConditionally} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="body1" gutterBottom>
+            Etwas komplizierter wird es, wenn man die <code>return</code> Werte von{' '}
+            <code>Promise.all()</code> behandeln muss. Hier hilft die neue Funktion enorm den Code
+            viel lesbarer zu machen.
+          </Typography>
+          <CodeBox code={flattenPromises} />
         </Grid>
       </Grid>
     </div>
