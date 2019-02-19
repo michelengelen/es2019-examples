@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { okaidia as prismStyle } from 'react-syntax-highlighter/dist/styles/prism';
+import { prism as prismStyle } from 'react-syntax-highlighter/dist/styles/prism';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -32,11 +32,15 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     height: '100%',
   },
+  spacerDiv: {
+    display: 'inline-block',
+    margin: `${theme.spacing.unit * 1.5}px 0`,
+  },
   spacer: {
     margin: `${theme.spacing.unit * 1.5}px 0`,
   },
   section: {
-    margin: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 2}px`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   stretch: {
     display: 'flex',
@@ -53,13 +57,22 @@ const CodeBox = ({ code }) => {
 };
 
 const flatSyntax = `// create new nested Array
-const nestedArray = [1, 2, 3, [4, [5, 6], 7, [8, 9]]];
+const nestedArray = [1, 2, 3, [4, [5, 6, [7, 8], 9]]];
 
 // call flat() "directly" from the array
 const newFlatArray1 = nestedArray.flat(2);
 
 // call flat() from Prototype
 const newFlatArray2 = Array.prototype.flat.call(nestedArray, 1);`;
+
+const flatInfinitySyntax = `// create new nested Array
+const nestedArray = [1, 2, 3, [4, [5, 6, [7, 8], 9]]];
+
+console.log(nestedArray.flat(2));
+// expected result: [1, 2, 3, 4, 5, 6, [7, 8], 9]
+
+console.log(nestedArray.flat(Infinity));
+// expected result: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
 
 const FeatureArrayFlat = withStyles(styles)(props => {
   const { classes } = props;
@@ -70,13 +83,13 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           <Typography variant="h6" gutterBottom>
             <code>Array.prototype.flat()</code> oder <code>[].flat()</code>
           </Typography>
-          <Typography variant="body1" gutterBottom>
+          <div className={classes.spacerDiv} />
+          <Typography variant="subheading" gutterBottom>
             Mithilfe dieser neuen prototype-funktion ist es möglich ein in mehrere Ebenen
             verschachteltes <code>Array</code> auf eine Ebene zu reduzieren. Der Rückgabewert ist
             ein neues (flaches) <code>Array</code>.
           </Typography>
-        </Grid>
-        <Grid item xs={12} className={classes.section}>
+          <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
             <code>
@@ -92,18 +105,30 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           <Typography variant="body1" gutterBottom>
             <strong>Parameter: </strong>
             <code>depth</code>
-            <code>{'{number = 1}'}</code>
+            <code>
+              <em>{'{number = 1}'}</em>
+            </code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Return: </strong>
             <code>Array</code>
           </Typography>
-          <CodeBox code={flatSyntax} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
             Die neue Prototype-Funktion <code>flat()</code> kann, wie bei allen Protoype-Funktionen,
             entweder per <code>call()</code> vom Protoypen selbst oder per Prototype-Chain-Zugriff
             erfolgen.
           </Typography>
+          <CodeBox code={flatSyntax} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="body1" gutterBottom>
+            Der Parameter <code>depth</code> gibt um wieviele Dimensionen das Array reduziert werden
+            soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum Beispiel{' '}
+            <code>Infinity</code> bekommt man immer ein eindimensionales Array zurück.
+          </Typography>
+          <CodeBox code={flatInfinitySyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>

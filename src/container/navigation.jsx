@@ -89,7 +89,8 @@ const Navigation = withRouter(props => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container>
-          <Grid item xs={12}>
+          <Grid item lg={3} md={2} sm={false} />
+          <Grid item lg={6} md={8} sm={12}>
             {children}
           </Grid>
         </Grid>

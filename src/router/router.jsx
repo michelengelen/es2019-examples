@@ -2,12 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomeIcon from '@material-ui/icons/Home';
-import NewReleases from '@material-ui/icons/NewReleases';
-import Code from '@material-ui/icons/Code';
+import NewReleasesIcon from '@material-ui/icons/NewReleases';
+import CodeIcon from '@material-ui/icons/Code';
+import ScheduleIcon from '@material-ui/icons/Schedule';
 
 import Navigation from 'container/navigation';
 import NoMatch from 'container/nomatch';
-import Home from 'pages/home';
+import EsIntroduction from 'pages/esIntroduction';
+import EsHistory from 'pages/esHistory';
 import FeatureOverview from 'pages/featureOverview';
 import FeatureArrayFlat from 'pages/featureArrayFlat';
 import FeatureArrayFlatmap from 'pages/featureArrayFlatmap';
@@ -16,29 +18,36 @@ const paths = [
   {
     path: '/',
     name: 'Einleitung',
-    component: Home,
+    component: EsIntroduction,
     icon: <HomeIcon />,
+    exact: true,
+  },
+  {
+    path: '/history',
+    name: 'ES10 Historie',
+    component: EsHistory,
+    icon: <ScheduleIcon />,
     exact: true,
   },
   {
     path: '/overview',
     name: 'ES10 Features',
     component: FeatureOverview,
-    icon: <NewReleases />,
+    icon: <NewReleasesIcon />,
     exact: true,
   },
   {
     path: '/overview/es10-flat',
     name: 'Array.prototype.flat()',
     component: FeatureArrayFlat,
-    icon: <Code />,
+    icon: <CodeIcon />,
     exact: true,
   },
   {
     path: '/overview/es10-flatMap',
     name: 'Array.prototype.flatmap()',
     component: FeatureArrayFlatmap,
-    icon: <Code />,
+    icon: <CodeIcon />,
     exact: true,
   },
 ];
