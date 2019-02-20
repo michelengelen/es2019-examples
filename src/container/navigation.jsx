@@ -56,10 +56,19 @@ const NavigationList = props => (
   </List>
 );
 
+NavigationList.propTypes = {
+  currentPath: PropTypes.string,
+};
+
+NavigationList.defaultProps= {
+  currentPath: '',
+};
+
 const Navigation = withRouter(props => {
   const { classes, location, children, paths } = props;
 
-  const currentPathTitle = paths.filter(path => path.path === location.pathname)[0].name;
+  const currentPath = paths.filter(path => path.path === location.pathname)[0];
+  const currentPathTitle = currentPath ? currentPath.name : 'Seite nicht gefunden';
 
   return (
     <div className={classes.root}>
