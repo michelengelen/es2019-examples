@@ -91,7 +91,13 @@ class Navigation extends PureComponent {
             >
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={config[key].name} />
-              {Array.isArray(subPaths) ? openSubnav === key ? <ExpandLess /> : <ExpandMore /> : null}
+              {Array.isArray(subPaths) ? (
+                openSubnav === key ? (
+                  <ExpandLess />
+                ) : (
+                  <ExpandMore />
+                )
+              ) : null}
             </ListItem>
             {Array.isArray(subPaths) && (
               <Collapse in={openSubnav === key} timeout="auto" unmountOnExit>
@@ -107,7 +113,9 @@ class Navigation extends PureComponent {
   render() {
     const { classes, location, children, paths } = this.props;
 
-    const currentPathKey = Object.keys(config).filter(key => config[key].path === location.pathname)[0];
+    const currentPathKey = Object.keys(config).filter(
+      key => config[key].path === location.pathname,
+    )[0];
     const currentPageTitle = currentPathKey ? config[currentPathKey].name : 'Seite nicht gefunden';
 
     return (
