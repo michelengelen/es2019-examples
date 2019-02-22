@@ -107,8 +107,8 @@ class Navigation extends PureComponent {
   render() {
     const { classes, location, children, paths } = this.props;
 
-    const currentPath = paths.filter(({ key }) => config[key].path === location.pathname)[0];
-    const currentPageTitle = currentPath ? config[currentPath.key].name : 'Seite nicht gefunden';
+    const currentPathKey = Object.keys(config).filter(key => config[key].path === location.pathname)[0];
+    const currentPageTitle = currentPathKey ? config[currentPathKey].name : 'Seite nicht gefunden';
 
     return (
       <div className={classes.root}>

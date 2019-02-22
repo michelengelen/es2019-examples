@@ -36,7 +36,6 @@ const paths = [
   {
     key: 'es2019Features',
     icon: <DevicesIcon />,
-    exact: true,
     subPaths: [
       {
         key: 'es2019Features_overview',
@@ -56,7 +55,7 @@ const paths = [
         icon: <CodeIcon />,
         exact: true,
       },
-    ]
+    ],
   },
 ];
 
@@ -70,20 +69,27 @@ const theme = createMuiTheme({
   },
 });
 
+const renderRoutes = routes =>
+  routes.map(route => {
+    if (Array.isArray(route.subPaths)) return renderRoutes(route.subPaths);
+
+    return (
+      <Route
+        {...route}
+        path={config[route.key].path}
+        name={config[route.key].name}
+        key={`route_${route.key}`}
+      />
+    );
+  });
+
 const AppRouter = () => (
   <Router onUpdate={() => window.scrollTo(0, 0)}>
     <ScrollToTop>
       <MuiThemeProvider theme={theme}>
         <Navigation paths={paths}>
           <Switch>
-            {paths.map(path => (
-              <Route
-                {...path}
-                path={config[path.key].path}
-                name={config[path.key].name}
-                key={`route_${path.key}`}
-              />
-            ))}
+            {renderRoutes(paths)}
             <Route name="Seite nicht gefunden" component={NoMatch} />
           </Switch>
         </Navigation>
