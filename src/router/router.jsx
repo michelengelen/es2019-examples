@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import HomeIcon from '@material-ui/icons/Home';
 import NewReleasesIcon from '@material-ui/icons/NewReleases';
 import CodeIcon from '@material-ui/icons/Code';
 import ScheduleIcon from '@material-ui/icons/Schedule';
+import DevicesIcon from '@material-ui/icons/ImportantDevices';
 
 import ScrollToTop from './scrollToTop';
 
@@ -16,55 +18,76 @@ import FeatureOverview from 'pages/featureOverview';
 import FeatureArrayFlat from 'pages/featureArrayFlat';
 import FeatureArrayFlatmap from 'pages/featureArrayFlatmap';
 
+import { routeConfigs as config } from 'constants/routeConfigs';
+
 const paths = [
   {
-    path: '/',
-    name: 'Einleitung',
+    key: 'esIntroduction',
     component: EsIntroduction,
     icon: <HomeIcon />,
     exact: true,
   },
   {
-    path: '/history',
-    name: 'ES10 Historie',
+    key: 'esHistory',
     component: EsHistory,
     icon: <ScheduleIcon />,
     exact: true,
   },
   {
-    path: '/overview',
-    name: 'ES10 Features',
-    component: FeatureOverview,
-    icon: <NewReleasesIcon />,
+    key: 'es2019Features',
+    icon: <DevicesIcon />,
     exact: true,
-  },
-  {
-    path: '/overview/es10-flat',
-    name: 'Array.prototype.flat()',
-    component: FeatureArrayFlat,
-    icon: <CodeIcon />,
-    exact: true,
-  },
-  {
-    path: '/overview/es10-flatMap',
-    name: 'Array.prototype.flatmap()',
-    component: FeatureArrayFlatmap,
-    icon: <CodeIcon />,
-    exact: true,
+    subPaths: [
+      {
+        key: 'es2019Features_overview',
+        component: FeatureOverview,
+        icon: <NewReleasesIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_arrayFlat',
+        component: FeatureArrayFlat,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_arrayFlatmap',
+        component: FeatureArrayFlatmap,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+    ]
   },
 ];
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    lineHeight: 18,
+  },
+  body1: {
+    lineHeight: 2,
+  },
+});
 
 const AppRouter = () => (
   <Router onUpdate={() => window.scrollTo(0, 0)}>
     <ScrollToTop>
-      <Navigation paths={paths}>
-        <Switch>
-          {paths.map(path => (
-            <Route {...path} key={`route_${path.name}`} />
-          ))}
-          <Route component={NoMatch} />
-        </Switch>
-      </Navigation>
+      <MuiThemeProvider theme={theme}>
+        <Navigation paths={paths}>
+          <Switch>
+            {paths.map(path => (
+              <Route
+                {...path}
+                path={config[path.key].path}
+                name={config[path.key].name}
+                key={`route_${path.key}`}
+              />
+            ))}
+            <Route name="Seite nicht gefunden" component={NoMatch} />
+          </Switch>
+        </Navigation>
+      </MuiThemeProvider>
     </ScrollToTop>
   </Router>
 );

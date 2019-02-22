@@ -38,6 +38,7 @@ const NoMatch = withStyles(styles)(props => {
   return (
     <div className={classes.root}>
       <Grid container className={classes.content} spacing={24}>
+        <Grid item xs={12}>
         <Paper className={classes.paper}>
           <Grid className={classes.section}>
             <Typography variant="h5" gutterBottom>
@@ -61,6 +62,7 @@ const NoMatch = withStyles(styles)(props => {
             </Button>
           </Grid>
         </Paper>
+        </Grid>
       </Grid>
     </div>
   );

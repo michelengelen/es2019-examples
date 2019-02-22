@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -39,134 +46,160 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'stretch',
   },
+  subHeader: {
+    backgroundColor: 'rgba(0,0,0,.05)',
+  },
 });
 
-const FeatureOverview = withStyles(styles)(props => {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <Grid container className={classes.content} spacing={24}>
-        <Grid item xs={12} className={classes.section}>
-          <Typography variant="h6" gutterBottom>
-            What the heck is ECMAScript?
-          </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            Woher kommen all diese coolen neuen Prototyp-Funktionen? Wer oder was definiert
-            JavaScript? Und was genau ist eigentlich dieses <code>ECMAScript</code>?
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Vielen von uns ist bekannt, dass <code>ECMAScript</code> der Sprachstandard ist auf dem
-            Javascript basiert. Dieser ist keinesfalls in Stein gemeißelt, sondern unterliegt einem
-            steten Wandel. Wie genau dieser Wandel vonstatten geht und wer eigentlich die
-            Entschidungen trifft welche Features implementiert werden möchte ich hier einmal kurz
-            anreissen.
-          </Typography>
-        </Grid>
-        <Grid item xs={12} className={classes.section}>
-          <Typography variant="h6" gutterBottom>
-            Historie, Gegenwart und Zukunft
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Die erste Version von ECMAScript ist im Jahre 1997 entstanden um den Standard für die,
-            damals noch neue, Sprache JavaScript zu bilden. Federführend war hier{' '}
-            <Link href="https://en.wikipedia.org/wiki/Guy_L._Steele_Jr.">Guy Lewis Stewart</Link>,
-            der damit den Grundstein ES1 bildete.
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Mittlerweile existiert für die Ausarbeitung der Spezifikationen ein Gremium:{' '}
-            <Link href="https://github.com/tc39">Technical Committee 39 [TC39]</Link>. Dieses setzt
-            sich aus Entwicklern aus den unterschiedlichsten Bereichen zusammen und entscheidet über
-            die Aufnahme neuer Features, Refinements oder Reworks innerhalb der Spezifikationen.
-            Jeder der eingereichten Vorschläge, seien es neue Prototyp-Funktionen oder simple
-            Umbenennungen, durchläuft in dem Aufnahmeprozess bis zu fünf Stufen.
-          </Typography>
-        </Grid>
-        <Grid item xs={12} className={classes.section}>
-          <Typography variant="h6" gutterBottom>
-            Die 5 Stufen
-          </Typography>
-          <Grid container spacing={32} className={classes.stretch}>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 0</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Strawman / Ideas</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Der Beginn einer jeden Spezifikation: Eine grundlegende Idee zur Verbesserung der
-                  Sprache ohne genauere Ausarbeitung oder Implementation.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 1</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Proposals</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  In dieser Stufe befinden sich die Vorschläge, die von einem sogenannten "Champion"
-                  (Fürsprecher aus dem Gremium) für potenziell förderungswürdig erachtet werden.
-                  Eine erste Implementation der Funktionalität wird erwartet ist aber nicht
-                  Vorraussetzung. Die Identifikation von möglichen Lösungsansätzen und potenziellen
-                  Schwierigkeiten bei der Umsetzung sollte hier geschehen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 2</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Drafts</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Proposals, die es bis in diese Stufe geschafft haben werden ab jetzt genauer
-                  ausgearbeitet und als erster Vorschlag in der Sprachumgebung eingesetzt. Zudem
-                  sollte die genaue Spezifikation des Proposals bereits vorliegen, auch wenn nicht
-                  erwartet wird, dass diese vollständig und fehlerfrei ist.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 3</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Candidates</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Nach der Draft-Phase und der damit verbundenen experimentellen Implementierung
-                  erfolgt hier nun ein ausgeweiteter Test unter Ausweitung der Anwendergruppe.
-                  Spezifikation, Syntax und Semantik müssen dafür schon in sehr ausgereifter,
-                  idealerweise aber in finaler Form vorliegen, denn Anpassungen werden in dieser
-                  Stufe nur noch akzeptiert, wenn kritische Indikatoren dies notwendig machen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 4</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Finished / Approved</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Feature-Proposals, die es in diese Stufe geschafft haben werden mit sehr großer Wahrscheinlichkeit in der neuen ECMAScript-Version implementiert.
-                </Typography>
-              </Paper>
-            </Grid>
+class FeatureOverview extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.getNavIcon = this.getNavIcon.bind(this);
+  }
+
+  getNavIcon(href) {
+    const { history } = this.props;
+    return (
+      <ListItemSecondaryAction>
+        <IconButton aria-label="got to Page" onClick={() => history.push(href)}>
+          <ChevronRightIcon />
+        </IconButton>
+      </ListItemSecondaryAction>
+    );
+  }
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Grid container className={classes.content} spacing={24}>
+          <Grid item xs={12} className={classes.section}>
+            <Typography variant="h6" gutterBottom>
+              Kurz vorweg
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              Die implementierten Features in den ECMAScript Versionen sind nicht zwangsläufig alles
+              was an Hilfsmitteln geboten wird. Es ist unter bestimmten Vorraussetzungen möglich
+              auch Features zu nutzen, die es nicht in das neue Release geschafft haben. Nutzt man
+              zum Beispiel <code>node</code> im Terminal kann man bestimmte Features (oder
+              Featuresets) aktivieren und nutzen, die es nicht bis in die Stufe 4 und in das Release
+              geschafft haben. Diese sind zwar mit Vorsicht einzusetzen, da nicht immer garantiert
+              ist, dass sie fehlerfrei funktionieren, aber es ist grundsätzlich möglich. Auch einige
+              der browserseitigen JavaScript Cores haben Features aus den Stufen 2-4 implementiert.
+            </Typography>
+            <Typography variant="body1" gutterBottom>
+              <strong>
+                Zitat von <Link href="https://twitter.com/v8js">@v8js</Link> auf Twitter:
+              </strong>
+              <br />
+              As of V8 v7.3 / Chrome 73, all of these ES2019 features are available by default.
+              Enjoy!
+            </Typography>
+          </Grid>
+          <Grid item xs={12} className={classes.section}>
+            <Typography variant="h6" gutterBottom>
+              Was ist neu in ES2019?
+            </Typography>
+            <Paper>
+              <List subheader={<li />}>
+                <ListSubheader className={classes.subHeader}>
+                  Grundlegende Änderungen/Features
+                </ListSubheader>
+                <ListItem divider>
+                  <ListItemText
+                    primary={<code>Array.prototype.flat</code>}
+                    secondary="Champions: Michael Ficarra, Brian Terlson, Mathias Bynens"
+                  />
+                  {this.getNavIcon('/overview/es10-flat')}
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary={<code>Array.prototype.flatMap</code>}
+                    secondary="Champion: Darien Maillet Valentine"
+                  />
+                  {this.getNavIcon('/overview/es10-flatmap')}
+                </ListItem>
+                <ListSubheader className={classes.subHeader}>
+                  Normale Änderungen/Features
+                </ListSubheader>
+                <ListItem divider>
+                  <ListItemText
+                    primary={<code>String.prototype.trimStart</code>}
+                    secondary="Champion: Sebastian Markbåge"
+                  />
+                  {this.getNavIcon('/overview/es10-trimstart')}
+                </ListItem>
+                <ListItem divider>
+                  <ListItemText
+                    primary={<code>String.prototype.trimEnd</code>}
+                    secondary="Champion: Sebastian Markbåge"
+                  />
+                  {this.getNavIcon('/overview/es10-trimend')}
+                </ListItem>
+                <ListItem divider>
+                  <ListItemText
+                    primary={<code>Symbol.prototype.description</code>}
+                    secondary="Champion: Michael Ficarra"
+                  />
+                  {this.getNavIcon('/overview/es10-symbol-description')}
+                </ListItem>
+                <ListItem divider>
+                  <ListItemText
+                    primary="Optionales catch binding"
+                    secondary="Champion: Michael Ficarra"
+                  />
+                  {this.getNavIcon('/overview/es10-optional-catch')}
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      <span>
+                        <code>Array.prototype.sort</code> Stabilitäts-Verbesserungen
+                      </span>
+                    }
+                    secondary="Champion: Mathias Bynens"
+                  />
+                  {this.getNavIcon('/overview/es10-sortstability')}
+                </ListItem>
+                <ListSubheader className={classes.subHeader}>interne Anpassungen</ListSubheader>
+                <ListItem divider>
+                  <ListItemText
+                    primary={
+                      <span>
+                        <code>JSON-stringify</code> Kompatibilität
+                      </span>
+                    }
+                    secondary="Champion: Richard Gibson"
+                  />
+                  {this.getNavIcon('/overview/es10-json-stringify')}
+                </ListItem>
+                <ListItem divider>
+                  <ListItemText primary="JSON superset" secondary="Champion: Richard Gibson" />
+                  {this.getNavIcon('/overview/es10-json-superset')}
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary={
+                      <span>
+                        <code>Function.prototype.toString</code> Revision
+                      </span>
+                    }
+                    secondary="Champion: Michael Ficarra"
+                  />
+                  {this.getNavIcon('/overview/es10-function-description')}
+                </ListItem>
+              </List>
+            </Paper>
           </Grid>
         </Grid>
-      </Grid>
-    </div>
-  );
-});
+      </div>
+    );
+  }
+}
 
 FeatureOverview.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withRouter(FeatureOverview);
+export default withRouter(withStyles(styles)(FeatureOverview));

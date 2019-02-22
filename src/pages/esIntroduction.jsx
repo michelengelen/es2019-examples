@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -102,11 +100,11 @@ class EsIntroduction extends PureComponent {
             <Typography variant="h6" gutterBottom>
               What the heck is ECMAScript?
             </Typography>
-            <Typography variant="subtitle2" gutterBottom>
+            <Typography paragraph variant="subtitle2">
               Woher kommen all diese coolen neuen Prototyp-Funktionen? Wer oder was definiert
               JavaScript? Und was genau ist eigentlich dieses <code>ECMAScript</code>?
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1">
               Vielen von uns ist bekannt, dass <code>ECMAScript</code> der Sprachstandard ist auf
               dem Javascript basiert. Dieser ist keinesfalls in Stein gemeißelt, sondern unterliegt
               einem steten Wandel. Wie genau dieser Wandel vonstatten geht und wer eigentlich die
@@ -118,13 +116,13 @@ class EsIntroduction extends PureComponent {
             <Typography variant="h6" gutterBottom>
               Wie alles begann
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography paragraph variant="body1">
               Die erste Version von ECMAScript ist im Jahre 1997 entstanden um den Standard für die,
               damals noch neue, Sprache JavaScript zu bilden. Federführend war hier{' '}
               <Link href="https://en.wikipedia.org/wiki/Guy_L._Steele_Jr.">Guy Lewis Stewart</Link>,
               der damit den Grundstein ES1 bildete.
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1">
               Mittlerweile existiert für die Ausarbeitung der Spezifikationen ein Gremium:{' '}
               <Link href="https://github.com/tc39">Technical Committee 39 [TC39]</Link>. Dieses
               setzt sich aus Entwicklern aus den unterschiedlichsten Bereichen zusammen und

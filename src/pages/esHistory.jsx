@@ -72,7 +72,7 @@ const EsHistory = props => {
             <em>Der Fehlschlag</em>
           </Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Anfang 2000 begann die Arbeit an einem neuerlichen Upgrade: ECMAScript 4 (Codename
             JavaScript 2). Schließlich wurde im Jahr 2003 ein interner Report veröffentlicht, der
             einige der neuen Features für ES4 beschrieb. Über diese gab es unter den im Gremium
@@ -82,7 +82,7 @@ const EsHistory = props => {
             und ein größeres Update mit den in ES4 angestrebten Änderungen im Nachgang zu beginnen),
             welche schlussendlich dazu führten, dass die Arbeit an dieser Version abgbrochen wurde.
           </Typography>
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Auf einer Konferenz im Jahre 2008 in Oslo wurde schließlich ein Kompromiss geschlossen:
             Das inkrementelle Update ES3.1 wird unter dem Namen ES5 veröffentlicht werden und die
             Version ES6 (Codename Harmony) sollte die ambitionierten Vorschläge von ES4 aufgreifen.
@@ -100,12 +100,12 @@ const EsHistory = props => {
             <em>Der kompromiss</em>
           </Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Das inkrementelle Update zu ES3 wurde im Jahr 2009 veröffentlicht, mehr als ein
             Jahrzehnt nach ES3. Aktuell unterstützen alle Browser diesen Standard zu 100% (bis auf
             den Internet Explorer v8 ... natürlich)
           </Typography>
-          <Typography variant="body1">
+          <Typography component="div" variant="body1">
             ES5 führte einige neue Features ein, wie:
             <ul>
               <li>
@@ -121,8 +121,8 @@ const EsHistory = props => {
                 <code>use strict;</code>
               </li>
               <li>
-                syntaktische Verbesserungen (zum Beispiel hängende Kommata und reservierte Wörter
-                wie <code>for</code> und <code>new</code>)
+                syntaktische Verbesserungen (zum Beispiel hängende Kommata und reservierte Wörter wie{' '}
+                <code>for</code> und <code>new</code>)
               </li>
             </ul>
           </Typography>
@@ -133,7 +133,7 @@ const EsHistory = props => {
             <em>Der heisse Scheiss</em>
           </Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Diese Version des ECMAScript Standards führte einige der bis heute beliebtesten
             Funktionen ein. Gleichzeitig entschied TC39 zu einer jahresgebundenen Versionierung zu
             wechseln. Somit ist ES6 eigentlich die falsche Bezeichnung (man sieht es dennoch relativ
@@ -142,7 +142,7 @@ const EsHistory = props => {
             generiert, den ein Browser in jedem Fall (ausser Internet Explorer 8) zu 100% nativ
             unterstützt. Dies gilt für alle kommenden Versionen.
           </Typography>
-          <Typography variant="body1">
+          <Typography component="div" variant="body1">
             Ein Auszug aus den neuen Features in ES2015:
             <ul>
               <li>
@@ -162,11 +162,11 @@ const EsHistory = props => {
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h5">ECMAScript 2016</Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Aufgrund des nun jährlich angesetzten Release-Zyklus sind auch die Anpassungen und neuen
             Features eher klein/weniger.
           </Typography>
-          <Typography variant="body1">
+          <Typography component="div" variant="body1">
             Im Falle von ES2016 sind es sogar nur 2 Features:
             <ul>
               <li>
@@ -181,10 +181,10 @@ const EsHistory = props => {
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h5">ECMAScript 2017</Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography paragraph variant="body1">
             Veröffentlichung im Januar 2017. Das Kernfeature ist <em>Shared memory and atomics</em>.
           </Typography>
-          <Typography variant="body1">
+          <Typography component="div" variant="body1">
             Major Features:
             <ul>
               <li>
@@ -212,7 +212,7 @@ const EsHistory = props => {
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h5">ECMAScript 2018</Typography>
           <Divider variant="middle" className={classes.spacer} />
-          <Typography variant="body1">
+          <Typography component="div" variant="body1">
             Major Features:
             <ul>
               <li>Asynchrone Iteration</li>

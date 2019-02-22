@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,9 +11,15 @@ import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Collapse from '@material-ui/core/Collapse';
+
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+
+import { routeConfigs as config } from 'constants/routeConfigs';
 
 import { withStyles } from '@material-ui/core/styles';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const drawerWidth = 320;
 
@@ -41,76 +47,111 @@ const styles = theme => ({
     ...theme.mixins.toolbar,
     padding: theme.spacing.unit * 2,
   },
+  nestedNav: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
 });
 
-const NavigationList = props => (
-  <List>
-    {props.paths.map(({ path, currentPath, name, icon }) => (
-      <Link to={path}>
-        <ListItem button key={name} selected={path === props.currentPath}>
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={name} />
-        </ListItem>
-      </Link>
-    ))}
-  </List>
-);
+class Navigation extends PureComponent {
+  constructor(props) {
+    super(props);
 
-NavigationList.propTypes = {
-  currentPath: PropTypes.string,
-};
+    this.renderNavigationList = this.renderNavigationList.bind(this);
+    this.handleSubnavClick = this.handleSubnavClick.bind(this);
 
-NavigationList.defaultProps= {
-  currentPath: '',
-};
+    this.state = {
+      openSubnav: '',
+    };
+  }
 
-const Navigation = withRouter(props => {
-  const { classes, location, children, paths } = props;
+  handleSubnavClick(key) {
+    return () => {
+      this.setState(prevState => ({
+        openSubnav: key !== prevState.openSubnav ? key : '',
+      }));
+    };
+  }
 
-  const currentPath = paths.filter(path => path.path === location.pathname)[0];
-  const currentPathTitle = currentPath ? currentPath.name : 'Seite nicht gefunden';
+  renderNavigationList(paths, nested = false) {
+    const { classes, history, location } = this.props;
+    const { openSubnav } = this.state;
+    return (
+      <List component={nested ? 'div' : 'nav'} disablePadding={nested}>
+        {paths.map(({ key, icon, subPaths }) => (
+          <div key={key}>
+            <ListItem
+              button
+              onClick={
+                !!config[key].path
+                  ? () => history.push(config[key].path)
+                  : this.handleSubnavClick(key)
+              }
+              selected={config[key].path === location.pathname}
+              className={nested ? classes.nestedNav : null}
+            >
+              <ListItemIcon>{icon}</ListItemIcon>
+              <ListItemText primary={config[key].name} />
+              {Array.isArray(subPaths) ? openSubnav === key ? <ExpandLess /> : <ExpandMore /> : null}
+            </ListItem>
+            {Array.isArray(subPaths) && (
+              <Collapse in={openSubnav === key} timeout="auto" unmountOnExit>
+                {this.renderNavigationList(subPaths, true)}
+              </Collapse>
+            )}
+          </div>
+        ))}
+      </List>
+    );
+  }
 
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            {`${currentPathTitle}`}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.toolbar}>
-          <Typography variant="h6" color="textSecondary">
-            ECMAScript 2019
-          </Typography>
-        </div>
-        <Divider />
-        <NavigationList paths={paths} currentPath={location.pathname} />
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Grid container>
-          <Grid item lg={3} md={2} sm={false} />
-          <Grid item lg={6} md={8} sm={12}>
-            {children}
+  render() {
+    const { classes, location, children, paths } = this.props;
+
+    const currentPath = paths.filter(({ key }) => config[key].path === location.pathname)[0];
+    const currentPageTitle = currentPath ? config[currentPath.key].name : 'Seite nicht gefunden';
+
+    return (
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              {currentPageTitle}
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.toolbar}>
+            <Typography variant="h6" color="textSecondary">
+              ECMAScript 2019
+            </Typography>
+          </div>
+          <Divider />
+          {this.renderNavigationList(paths)}
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Grid container>
+            <Grid item lg={3} md={2} sm={false} />
+            <Grid item lg={6} md={8} sm={12}>
+              {children}
+            </Grid>
           </Grid>
-        </Grid>
-      </main>
-    </div>
-  );
-});
+        </main>
+      </div>
+    );
+  }
+}
 
 Navigation.propTypes = {
   classes: PropTypes.object,
   paths: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default withStyles(styles)(Navigation);
+export default withStyles(styles)(withRouter(Navigation));
