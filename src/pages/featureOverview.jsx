@@ -17,6 +17,7 @@ import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 import Code from 'components/code';
+import { routeConfigs, routeSubHeader } from '../constants/routeConfigs';
 
 const styles = theme => ({
   button: {
@@ -56,7 +57,7 @@ const styles = theme => ({
     borderRadius: 5,
     backgroundColor: 'rgba(0,0,0,.05)',
     fontStyle: 'italic',
-  }
+  },
 });
 
 class FeatureOverview extends PureComponent {
@@ -79,6 +80,8 @@ class FeatureOverview extends PureComponent {
 
   render() {
     const { classes } = this.props;
+    let routeType = 0;
+
     return (
       <div className={classes.root}>
         <Grid container className={classes.content} spacing={24}>
@@ -110,92 +113,31 @@ class FeatureOverview extends PureComponent {
             </Typography>
             <Paper>
               <List subheader={<li />}>
-                <ListSubheader className={classes.subHeader}>
-                  Grundlegende Änderungen/Features
-                </ListSubheader>
-                <ListItem divider>
-                  <ListItemText
-                    primary={<Code>Array.prototype.flat</Code>}
-                    secondary="Champions: Michael Ficarra, Brian Terlson, Mathias Bynens"
-                  />
-                  {this.getNavIcon('/overview/es10-flat')}
-                </ListItem>
-                <ListItem>
-                  <ListItemText
-                    primary={<Code>Array.prototype.flatMap</Code>}
-                    secondary="Champion: Darien Maillet Valentine"
-                  />
-                  {this.getNavIcon('/overview/es10-flatmap')}
-                </ListItem>
-                <ListSubheader className={classes.subHeader}>
-                  Normale Änderungen/Features
-                </ListSubheader>
-                <ListItem divider>
-                  <ListItemText
-                    primary={<Code>String.prototype.trimStart</Code>}
-                    secondary="Champion: Sebastian Markbåge"
-                  />
-                  {this.getNavIcon('/overview/es10-trimstart')}
-                </ListItem>
-                <ListItem divider>
-                  <ListItemText
-                    primary={<Code>String.prototype.trimEnd</Code>}
-                    secondary="Champion: Sebastian Markbåge"
-                  />
-                  {this.getNavIcon('/overview/es10-trimend')}
-                </ListItem>
-                <ListItem divider>
-                  <ListItemText
-                    primary={<Code>Symbol.prototype.description</Code>}
-                    secondary="Champion: Michael Ficarra"
-                  />
-                  {this.getNavIcon('/overview/es10-symbol-description')}
-                </ListItem>
-                <ListItem divider>
-                  <ListItemText
-                    primary="Optionales catch binding"
-                    secondary="Champion: Michael Ficarra"
-                  />
-                  {this.getNavIcon('/overview/es10-optional-catch')}
-                </ListItem>
-                <ListItem>
-                  <ListItemText
-                    primary={
-                      <span>
-                        <Code>Array.prototype.sort</Code> Stabilitäts-Verbesserungen
-                      </span>
-                    }
-                    secondary="Champion: Mathias Bynens"
-                  />
-                  {this.getNavIcon('/overview/es10-sortstability')}
-                </ListItem>
-                <ListSubheader className={classes.subHeader}>interne Anpassungen</ListSubheader>
-                <ListItem divider>
-                  <ListItemText
-                    primary={
-                      <span>
-                        <Code>JSON-stringify</Code> Kompatibilität
-                      </span>
-                    }
-                    secondary="Champion: Richard Gibson"
-                  />
-                  {this.getNavIcon('/overview/es10-json-stringify')}
-                </ListItem>
-                <ListItem divider>
-                  <ListItemText primary="JSON superset" secondary="Champion: Richard Gibson" />
-                  {this.getNavIcon('/overview/es10-json-superset')}
-                </ListItem>
-                <ListItem>
-                  <ListItemText
-                    primary={
-                      <span>
-                        <Code>Function.prototype.toString</Code> Revision
-                      </span>
-                    }
-                    secondary="Champion: Michael Ficarra"
-                  />
-                  {this.getNavIcon('/overview/es10-function-description')}
-                </ListItem>
+                {Object.keys(routeConfigs).map((key, index) => {
+                  if (isNaN(routeConfigs[key].type)) return null;
+                  let subHeader = null;
+                  if (routeConfigs[key].type === routeType) {
+                    subHeader = (
+                      <ListSubheader className={classes.subHeader}>
+                        {routeSubHeader[routeConfigs[key].type]}
+                      </ListSubheader>
+                    );
+                    routeType++;
+                  }
+
+                  return (
+                    <div key={`es2019overView_${routeConfigs[key].path}`}>
+                      {subHeader}
+                      <ListItem divider={Object.keys(routeConfigs).length !== index + 1}>
+                        <ListItemText
+                          primary={routeConfigs[key].primary}
+                          secondary={routeConfigs[key].secondary}
+                        />
+                        {this.getNavIcon(routeConfigs[key].path)}
+                      </ListItem>
+                    </div>
+                  );
+                })}
               </List>
             </Paper>
           </Grid>

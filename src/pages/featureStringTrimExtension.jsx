@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import WarningIcon from '@material-ui/icons/Warning';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
@@ -101,17 +100,17 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
     <div className={classes.root}>
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6">
             <Code>String.prototype.trimStart()</Code> oder{' '}
             <Code>"".trimStart()</Code>
           </Typography>
           <div className={classes.spacerDiv} />
-          <Typography variant="subheading" paragraph>
+          <Typography variant="body1" paragraph>
             Im Grunde ist <Code>Array.prototype.flatMap()</Code> eine Kombination der
             bekannten Methode <Code>Array.prototype.map()</Code> und der neuen Methode
             <Code>Array.prototype.flat()</Code>.
           </Typography>
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="body1" gutterBottom>
             Genau wie <Code>Array.prototype.map()</Code> akzeptiert die neue Methode
             eine
             <Code>callback</Code> Funktion. Der Rückgabewert ist jedoch ein neues
@@ -158,11 +157,11 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
           </Typography>
           <CodeBox code={flatMapExamples} />
           <blockquote>
-            <Typography variant="h6" gutterBotttom>
-              ⚠️ Bitte beachten:
+            <Typography variant="h6" gutterBottom>
+              <span role="img" aria-label="warning-icon">⚠</span>️ Bitte beachten:
             </Typography>
             <Divider className={classes.spacer} />
-            <Typography variant="body">
+            <Typography variant="body1">
               Es gibt bei <Code>flatMap()</Code> keinen Parameter für die Tiefe der
               Verschachtelung, die reduziert werden soll.
             </Typography>
