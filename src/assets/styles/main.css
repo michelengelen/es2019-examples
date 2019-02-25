@@ -25,4 +25,11 @@ code {
     align-items: stretch;
 }
 
+blockquote {
+    margin: 24px 0;
+    padding: 14px 24px;
+    border-left: 5px solid rgba(0, 0, 0, 0.38);
+    background-color: #fff;
+}
+
 

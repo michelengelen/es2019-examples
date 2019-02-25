@@ -17,6 +17,7 @@ import EsHistory from 'pages/esHistory';
 import FeatureOverview from 'pages/featureOverview';
 import FeatureArrayFlat from 'pages/featureArrayFlat';
 import FeatureArrayFlatmap from 'pages/featureArrayFlatmap';
+import FeatureStringTrimExtension from 'pages/featureStringTrimExtension';
 
 import { routeConfigs as config } from 'constants/routeConfigs';
 
@@ -52,6 +53,12 @@ const paths = [
       {
         key: 'es2019Features_arrayFlatmap',
         component: FeatureArrayFlatmap,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_stringTrimExtension',
+        component: FeatureStringTrimExtension,
         icon: <CodeIcon />,
         exact: true,
       },

@@ -24,14 +24,9 @@ export const routeConfigs = {
     name: 'Array.prototype.flatmap()',
     type: 0,
   },
-  es2019Features_stringTrimstart: {
-    path: '/es2019/string-trimstart',
-    name: 'String Trimstart',
-    type: 0,
-  },
-  es2019Features_stringTrimend: {
-    path: '/es2019/string-trimend',
-    name: 'String Trimend',
+  es2019Features_stringTrimExtension: {
+    path: '/es2019/string-trim',
+    name: 'String.prototype.{trimStart|trimEnd}',
     type: 0,
   },
   es2019Features_symbolDescription: {
@@ -48,10 +43,5 @@ export const routeConfigs = {
     path: '/es2019/array-sort-stability',
     name: 'Array.sort() stability',
     type: 1,
-  },
-  es2019Features_symbolDescription: {
-    path: '/es2019/symbol-description',
-    name: 'Symbol description',
-    type: 0,
   },
 };

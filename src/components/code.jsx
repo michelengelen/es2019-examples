@@ -8,8 +8,8 @@ const style = {
   color: 'rgba(0,0,0,.75)',
 };
 
-const InlineCode = ({ children }) => (
+const Code = ({ children }) => (
   <code style={style}>{children}</code>
 );
 
-export default InlineCode;
+export default Code;

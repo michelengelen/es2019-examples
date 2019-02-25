@@ -95,15 +95,15 @@ arr.map(x => x.split(" "));
 arr.flatMap(x => x.split(" "));
 // ["ECMAScript", "2019", "has", "", "some", "awesome", "new", "Features"]`;
 
-const FeatureArrayFlatmap = withStyles(styles)(props => {
+const FeatureStringTrimExtension = withStyles(styles)(props => {
   const { classes } = props;
   return (
     <div className={classes.root}>
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <Code>Array.prototype.flatMap()</Code> oder{' '}
-            <Code>[].flatMap()</Code>
+            <Code>String.prototype.trimStart()</Code> oder{' '}
+            <Code>"".trimStart()</Code>
           </Typography>
           <div className={classes.spacerDiv} />
           <Typography variant="subheading" paragraph>
@@ -204,8 +204,8 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
   );
 });
 
-FeatureArrayFlatmap.propTypes = {
+FeatureStringTrimExtension.propTypes = {
   classes: PropTypes.object,
 };
 
-export default withRouter(FeatureArrayFlatmap);
+export default withRouter(FeatureStringTrimExtension);

@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
 import CodeBox from 'components/codeBox';
-import InlineCode from 'components/inlineCode';
+import Code from 'components/code';
 
 const styles = theme => ({
   button: {
@@ -115,52 +115,52 @@ const FeatureArrayFlat = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <InlineCode>Array.prototype.flat()</InlineCode> oder <InlineCode>[].flat()</InlineCode>
+            <Code>Array.prototype.flat()</Code> oder <Code>[].flat()</Code>
           </Typography>
           <div className={classes.spacerDiv} />
           <Typography variant="body1" gutterBottom>
             Mithilfe dieser neuen prototype-funktion ist es möglich ein in mehrere Ebenen
-            verschachteltes <InlineCode>Array</InlineCode> auf eine Ebene zu reduzieren. Der
-            Rückgabewert ist ein neues (flaches) <InlineCode>Array</InlineCode>.
+            verschachteltes <Code>Array</Code> auf eine Ebene zu reduzieren. Der
+            Rückgabewert ist ein neues (flaches) <Code>Array</Code>.
           </Typography>
           <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
-            <InlineCode>
+            <Code>
               Array.prototype.flat.call([], <em>depth</em>)
-            </InlineCode>
+            </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Short Syntax: </strong>
-            <InlineCode>
+            <Code>
               [].flat(<em>depth</em>)
-            </InlineCode>
+            </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Parameter: </strong>
-            <InlineCode>depth</InlineCode>
-            <InlineCode>
+            <Code>depth</Code>
+            <Code>
               <em>{'{number = 1}'}</em>
-            </InlineCode>
+            </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Return: </strong>
-            <InlineCode>Array</InlineCode>
+            <Code>Array</Code>
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Die neue Prototype-Funktion <InlineCode>flat()</InlineCode> kann, wie bei allen
-            Protoype-Funktionen, entweder per <InlineCode>call()</InlineCode> vom Protoypen selbst
+            Die neue Prototype-Funktion <Code>flat()</Code> kann, wie bei allen
+            Protoype-Funktionen, entweder per <Code>call()</Code> vom Protoypen selbst
             oder per Prototype-Chain-Zugriff erfolgen.
           </Typography>
           <CodeBox code={flatSyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Der Parameter <InlineCode>depth</InlineCode> gibt um wieviele Dimensionen das Array
+            Der Parameter <Code>depth</Code> gibt um wieviele Dimensionen das Array
             reduziert werden soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum
-            Beispiel <InlineCode>Infinity</InlineCode> bekommt man immer ein eindimensionales Array
+            Beispiel <Code>Infinity</Code> bekommt man immer ein eindimensionales Array
             zurück.
           </Typography>
           <CodeBox code={flatInfinitySyntax} />
@@ -171,14 +171,14 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           </Typography>
           <Typography variant="body1" gutterBottom>
             Wollte man diesen Effekt ohne die neue Prototpe-Funktion erzielen musste man relativ
-            umständlich unter Zuhilfenahme von <InlineCode>Array.prototype.reduce</InlineCode> und
-            <InlineCode>Array.prototype.concat</InlineCode> eine rekursive Funktion einsetzen.
+            umständlich unter Zuhilfenahme von <Code>Array.prototype.reduce</Code> und
+            <Code>Array.prototype.concat</Code> eine rekursive Funktion einsetzen.
           </Typography>
           <CodeBox code={legacyFlatten} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <InlineCode>Array.prototype.flat</InlineCode> im Einsatz
+            <Code>Array.prototype.flat</Code> im Einsatz
           </Typography>
           <Typography variant="body1" gutterBottom>
             Als einfacher Einstzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
@@ -188,8 +188,8 @@ const FeatureArrayFlat = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Etwas komplizierter wird es, wenn man die <InlineCode>return</InlineCode> Werte von{' '}
-            <InlineCode>Promise.all()</InlineCode> behandeln muss. Hier hilft die neue Funktion
+            Etwas komplizierter wird es, wenn man die <Code>return</Code> Werte von{' '}
+            <Code>Promise.all()</Code> behandeln muss. Hier hilft die neue Funktion
             enorm den Code viel lesbarer zu machen.
           </Typography>
           <CodeBox code={flattenPromises} />

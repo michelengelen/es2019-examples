@@ -8,5 +8,4 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "!arrowParens": "always",
-  "parser": "flow"
 }

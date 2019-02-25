@@ -1,3 +1,8 @@
-const arr = [1, 2, 3, [4, [5, 6, [7, 8], 9]]];
+const arr = [1, 2, [3, [4, 5]], [], 6];
 
-console.log(Array.prototype.flat.call(arr, Infinity));
+const recursiveCallback = x =>
+  Array.isArray(x)
+    ? x.flatMap(recursiveCallback)
+    : [x * 2, x * 3];
+
+console.log(arr.flatMap(recursiveCallback));

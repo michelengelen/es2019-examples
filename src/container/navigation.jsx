@@ -21,7 +21,7 @@ import { routeConfigs as config } from 'constants/routeConfigs';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
-const drawerWidth = 320;
+const drawerWidth = 390;
 
 const styles = theme => ({
   root: {

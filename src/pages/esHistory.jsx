@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import InlineCode from 'components/inlineCode';
+import Code from 'components/code';
 
 const styles = theme => ({
   actionsContainer: {
@@ -64,8 +64,9 @@ const EsHistory = props => {
             damals für JavaScript erstellt wurde eingehalten werden konnte. Nur eineinhalb Jahre
             später, nämlich im Dezember 1999, wurde schließlich ECMAScript 3 veröffentlicht. Mit
             dieser Version wurden viele der heute für selbstverständlich angesehenen Features
-            hinzugefügt, wie <InlineCode>regular expressions</InlineCode>,<InlineCode>try/catch</InlineCode> exception
-            handling, und Formatierungen für numerische Ausgaben.
+            hinzugefügt, wie <Code>regular expressions</Code>,
+            <Code>try/catch</Code> exception handling, und Formatierungen für numerische
+            Ausgaben.
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
@@ -111,20 +112,22 @@ const EsHistory = props => {
             ES5 führte einige neue Features ein, wie:
             <ul>
               <li>
-                <InlineCode>JSON</InlineCode> parsing/serialization
+                <Code>JSON</Code> parsing/serialization
               </li>
               <li>
-                <InlineCode>Array.prototype methods</InlineCode> (wie <InlineCode>map</InlineCode> und <InlineCode>forEach</InlineCode>)
+                <Code>Array.prototype methods</Code> (wie <Code>map</Code>
+                und <Code>forEach</Code>)
               </li>
               <li>
-                <InlineCode>Object.prototype methods</InlineCode> (wie <InlineCode>Object.keys()</InlineCode>)
+                <Code>Object.prototype methods</Code> (wie{' '}
+                <Code>Object.keys()</Code>)
               </li>
               <li>
-                <InlineCode>use strict;</InlineCode>
+                <Code>use strict;</Code>
               </li>
               <li>
-                syntaktische Verbesserungen (zum Beispiel hängende Kommata und reservierte Wörter wie{' '}
-                <InlineCode>for</InlineCode> und <InlineCode>new</InlineCode>)
+                syntaktische Verbesserungen (zum Beispiel hängende Kommata und reservierte Wörter
+                wie <Code>for</Code> und <Code>new</Code>)
               </li>
             </ul>
           </Typography>
@@ -148,13 +151,13 @@ const EsHistory = props => {
             Ein Auszug aus den neuen Features in ES2015:
             <ul>
               <li>
-                <InlineCode>arrow functions</InlineCode>
+                <Code>arrow functions</Code>
               </li>
               <li>Klassen</li>
               <li>verbesserte Objekt-Literale</li>
               <li>Template Strings</li>
               <li>
-                <InlineCode>let</InlineCode> und <InlineCode>const</InlineCode>
+                <Code>let</Code> und <Code>const</Code>
               </li>
               <li>Promises</li>
               <li>und vieles mehr</li>
@@ -172,10 +175,10 @@ const EsHistory = props => {
             Im Falle von ES2016 sind es sogar nur 2 Features:
             <ul>
               <li>
-                <InlineCode>Array.prototype.includes()</InlineCode>
+                <Code>Array.prototype.includes()</Code>
               </li>
               <li>
-                <InlineCode>**</InlineCode> (Exponenten Operator)
+                <Code>**</Code> (Exponenten Operator)
               </li>
             </ul>
           </Typography>
@@ -190,7 +193,7 @@ const EsHistory = props => {
             Major Features:
             <ul>
               <li>
-                <InlineCode>async/await</InlineCode> (asynchrone Funktionen)
+                <Code>async/await</Code> (asynchrone Funktionen)
               </li>
               <li>
                 <Link href="http://2ality.com/2017/01/shared-array-buffer.html">
@@ -201,10 +204,10 @@ const EsHistory = props => {
             Minor Features:
             <ul>
               <li>
-                <InlineCode>Object.values</InlineCode> und <InlineCode>Object.entries</InlineCode>
+                <Code>Object.values</Code> und <Code>Object.entries</Code>
               </li>
               <li>
-                <InlineCode>Object.getOwnPropertyDescriptors</InlineCode>
+                <Code>Object.getOwnPropertyDescriptors</Code>
               </li>
               <li>String padding</li>
               <li>hängende Kommata in Funktionsparametern</li>
@@ -224,7 +227,7 @@ const EsHistory = props => {
             Minor Features:
             <ul>
               <li>
-                <InlineCode>Promise.prototype.finally()</InlineCode>
+                <Code>Promise.prototype.finally()</Code>
               </li>
               <li>eine Revision des Template-Literals</li>
             </ul>

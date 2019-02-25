@@ -16,7 +16,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import InlineCode from 'components/inlineCode';
+import Code from 'components/code';
 
 const styles = theme => ({
   button: {
@@ -90,7 +90,7 @@ class FeatureOverview extends PureComponent {
               Die implementierten Features in den ECMAScript Versionen sind nicht zwangsläufig alles
               was an Hilfsmitteln geboten wird. Es ist unter bestimmten Vorraussetzungen möglich
               auch Features zu nutzen, die es nicht in das neue Release geschafft haben. Nutzt man
-              zum Beispiel <InlineCode>node</InlineCode> im Terminal kann man bestimmte Features (oder
+              zum Beispiel <Code>node</Code> im Terminal kann man bestimmte Features (oder
               Featuresets) aktivieren und nutzen, die es nicht bis in die Stufe 4 und in das Release
               geschafft haben. Diese sind zwar mit Vorsicht einzusetzen, da nicht immer garantiert
               ist, dass sie fehlerfrei funktionieren, aber es ist grundsätzlich möglich. Auch einige
@@ -115,14 +115,14 @@ class FeatureOverview extends PureComponent {
                 </ListSubheader>
                 <ListItem divider>
                   <ListItemText
-                    primary={<InlineCode>Array.prototype.flat</InlineCode>}
+                    primary={<Code>Array.prototype.flat</Code>}
                     secondary="Champions: Michael Ficarra, Brian Terlson, Mathias Bynens"
                   />
                   {this.getNavIcon('/overview/es10-flat')}
                 </ListItem>
                 <ListItem>
                   <ListItemText
-                    primary={<InlineCode>Array.prototype.flatMap</InlineCode>}
+                    primary={<Code>Array.prototype.flatMap</Code>}
                     secondary="Champion: Darien Maillet Valentine"
                   />
                   {this.getNavIcon('/overview/es10-flatmap')}
@@ -132,21 +132,21 @@ class FeatureOverview extends PureComponent {
                 </ListSubheader>
                 <ListItem divider>
                   <ListItemText
-                    primary={<InlineCode>String.prototype.trimStart</InlineCode>}
+                    primary={<Code>String.prototype.trimStart</Code>}
                     secondary="Champion: Sebastian Markbåge"
                   />
                   {this.getNavIcon('/overview/es10-trimstart')}
                 </ListItem>
                 <ListItem divider>
                   <ListItemText
-                    primary={<InlineCode>String.prototype.trimEnd</InlineCode>}
+                    primary={<Code>String.prototype.trimEnd</Code>}
                     secondary="Champion: Sebastian Markbåge"
                   />
                   {this.getNavIcon('/overview/es10-trimend')}
                 </ListItem>
                 <ListItem divider>
                   <ListItemText
-                    primary={<InlineCode>Symbol.prototype.description</InlineCode>}
+                    primary={<Code>Symbol.prototype.description</Code>}
                     secondary="Champion: Michael Ficarra"
                   />
                   {this.getNavIcon('/overview/es10-symbol-description')}
@@ -162,7 +162,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <InlineCode>Array.prototype.sort</InlineCode> Stabilitäts-Verbesserungen
+                        <Code>Array.prototype.sort</Code> Stabilitäts-Verbesserungen
                       </span>
                     }
                     secondary="Champion: Mathias Bynens"
@@ -174,7 +174,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <InlineCode>JSON-stringify</InlineCode> Kompatibilität
+                        <Code>JSON-stringify</Code> Kompatibilität
                       </span>
                     }
                     secondary="Champion: Richard Gibson"
@@ -189,7 +189,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <InlineCode>Function.prototype.toString</InlineCode> Revision
+                        <Code>Function.prototype.toString</Code> Revision
                       </span>
                     }
                     secondary="Champion: Michael Ficarra"

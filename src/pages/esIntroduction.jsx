@@ -12,7 +12,7 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
-import InlineCode from 'components/inlineCode';
+import Code from 'components/code';
 
 const styles = theme => ({
   actionsContainer: {
@@ -104,14 +104,14 @@ class EsIntroduction extends PureComponent {
             </Typography>
             <Typography paragraph variant="subtitle2">
               Woher kommen all diese coolen neuen Prototyp-Funktionen? Wer oder was definiert
-              JavaScript? Und was genau ist eigentlich dieses <InlineCode>ECMAScript</InlineCode>?
+              JavaScript? Und was genau ist eigentlich dieses <Code>ECMAScript</Code>?
             </Typography>
             <Typography variant="body1">
-              Vielen von uns ist bekannt, dass <InlineCode>ECMAScript</InlineCode> der Sprachstandard ist auf
-              dem Javascript basiert. Dieser ist keinesfalls in Stein gemeißelt, sondern unterliegt
-              einem steten Wandel. Wie genau dieser Wandel vonstatten geht und wer eigentlich die
-              Entschidungen trifft welche Features implementiert werden möchte ich hier einmal kurz
-              anreissen.
+              Vielen von uns ist bekannt, dass <Code>ECMAScript</Code> der
+              Sprachstandard ist auf dem Javascript basiert. Dieser ist keinesfalls in Stein
+              gemeißelt, sondern unterliegt einem steten Wandel. Wie genau dieser Wandel vonstatten
+              geht und wer eigentlich die Entschidungen trifft welche Features implementiert werden
+              möchte ich hier einmal kurz anreissen.
             </Typography>
           </Grid>
           <Grid item xs={12} className={classes.section}>
