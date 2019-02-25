@@ -16,6 +16,8 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 
+import InlineCode from 'components/inlineCode';
+
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -49,6 +51,12 @@ const styles = theme => ({
   subHeader: {
     backgroundColor: 'rgba(0,0,0,.05)',
   },
+  quote: {
+    padding: `${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 4}px`,
+    borderRadius: 5,
+    backgroundColor: 'rgba(0,0,0,.05)',
+    fontStyle: 'italic',
+  }
 });
 
 class FeatureOverview extends PureComponent {
@@ -78,24 +86,23 @@ class FeatureOverview extends PureComponent {
             <Typography variant="h6" gutterBottom>
               Kurz vorweg
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography paragraph variant="body1" gutterBottom>
               Die implementierten Features in den ECMAScript Versionen sind nicht zwangsläufig alles
               was an Hilfsmitteln geboten wird. Es ist unter bestimmten Vorraussetzungen möglich
               auch Features zu nutzen, die es nicht in das neue Release geschafft haben. Nutzt man
-              zum Beispiel <code>node</code> im Terminal kann man bestimmte Features (oder
+              zum Beispiel <InlineCode>node</InlineCode> im Terminal kann man bestimmte Features (oder
               Featuresets) aktivieren und nutzen, die es nicht bis in die Stufe 4 und in das Release
               geschafft haben. Diese sind zwar mit Vorsicht einzusetzen, da nicht immer garantiert
               ist, dass sie fehlerfrei funktionieren, aber es ist grundsätzlich möglich. Auch einige
               der browserseitigen JavaScript Cores haben Features aus den Stufen 2-4 implementiert.
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>
-                Zitat von <Link href="https://twitter.com/v8js">@v8js</Link> auf Twitter:
-              </strong>
-              <br />
+            <Typography variant="subtitle2" gutterBottom>
+              Zitat hierzu von <Link href="https://twitter.com/v8js">@v8js</Link> auf Twitter:
+            </Typography>
+            <div className={classes.quote}>
               As of V8 v7.3 / Chrome 73, all of these ES2019 features are available by default.
               Enjoy!
-            </Typography>
+            </div>
           </Grid>
           <Grid item xs={12} className={classes.section}>
             <Typography variant="h6" gutterBottom>
@@ -108,14 +115,14 @@ class FeatureOverview extends PureComponent {
                 </ListSubheader>
                 <ListItem divider>
                   <ListItemText
-                    primary={<code>Array.prototype.flat</code>}
+                    primary={<InlineCode>Array.prototype.flat</InlineCode>}
                     secondary="Champions: Michael Ficarra, Brian Terlson, Mathias Bynens"
                   />
                   {this.getNavIcon('/overview/es10-flat')}
                 </ListItem>
                 <ListItem>
                   <ListItemText
-                    primary={<code>Array.prototype.flatMap</code>}
+                    primary={<InlineCode>Array.prototype.flatMap</InlineCode>}
                     secondary="Champion: Darien Maillet Valentine"
                   />
                   {this.getNavIcon('/overview/es10-flatmap')}
@@ -125,21 +132,21 @@ class FeatureOverview extends PureComponent {
                 </ListSubheader>
                 <ListItem divider>
                   <ListItemText
-                    primary={<code>String.prototype.trimStart</code>}
+                    primary={<InlineCode>String.prototype.trimStart</InlineCode>}
                     secondary="Champion: Sebastian Markbåge"
                   />
                   {this.getNavIcon('/overview/es10-trimstart')}
                 </ListItem>
                 <ListItem divider>
                   <ListItemText
-                    primary={<code>String.prototype.trimEnd</code>}
+                    primary={<InlineCode>String.prototype.trimEnd</InlineCode>}
                     secondary="Champion: Sebastian Markbåge"
                   />
                   {this.getNavIcon('/overview/es10-trimend')}
                 </ListItem>
                 <ListItem divider>
                   <ListItemText
-                    primary={<code>Symbol.prototype.description</code>}
+                    primary={<InlineCode>Symbol.prototype.description</InlineCode>}
                     secondary="Champion: Michael Ficarra"
                   />
                   {this.getNavIcon('/overview/es10-symbol-description')}
@@ -155,7 +162,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <code>Array.prototype.sort</code> Stabilitäts-Verbesserungen
+                        <InlineCode>Array.prototype.sort</InlineCode> Stabilitäts-Verbesserungen
                       </span>
                     }
                     secondary="Champion: Mathias Bynens"
@@ -167,7 +174,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <code>JSON-stringify</code> Kompatibilität
+                        <InlineCode>JSON-stringify</InlineCode> Kompatibilität
                       </span>
                     }
                     secondary="Champion: Richard Gibson"
@@ -182,7 +189,7 @@ class FeatureOverview extends PureComponent {
                   <ListItemText
                     primary={
                       <span>
-                        <code>Function.prototype.toString</code> Revision
+                        <InlineCode>Function.prototype.toString</InlineCode> Revision
                       </span>
                     }
                     secondary="Champion: Michael Ficarra"

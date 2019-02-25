@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+
+import CodeBox from 'components/codeBox';
+import InlineCode from 'components/inlineCode';
 
 const styles = theme => ({
   button: {
@@ -29,17 +30,86 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     height: '100%',
   },
+  spacerDiv: {
+    display: 'inline-block',
+    margin: `${theme.spacing.unit * 1.5}px 0`,
+  },
   spacer: {
     margin: `${theme.spacing.unit * 1.5}px 0`,
   },
   section: {
-    margin: `${theme.spacing.unit * 1.5}px ${theme.spacing.unit * 2}px`,
+    margin: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
   },
   stretch: {
     display: 'flex',
     alignItems: 'stretch',
   },
 });
+
+const flatMapSyntax = `// create new nested Array
+const arr = [1, 2, 3, 4];
+
+// call flatMap() "directly" from the array
+const newFlatmappedArray1 = arr.flatMap(x => [x, x * 2]);
+
+// call flat() from Prototype
+const newFlatmappedArray2 = Array.prototype.flat.call(
+  nestedArray,
+  x => [x, x * 2],
+);`;
+
+const flatInfinitySyntax = `// create new nested Array
+const nestedArray = [1, 2, 3, [4, [5, 6, [7, 8], 9]]];
+
+console.log(nestedArray.flat(2));
+// expected result: [1, 2, 3, 4, 5, 6, [7, 8], 9]
+
+console.log(nestedArray.flat(Infinity));
+// expected result: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
+
+const legacyFlatten = `// to enable deep level flatten use recursion with reduce and concat
+var arr1 = [1, 2, 3, [4, 5, 6, 7, [8, 9]]];
+
+function flattenArray(arr1) {
+  return arr1.reduce((acc, val) => Array.isArray(val)
+    ? acc.concat(flattenArray(val))
+    : acc.concat(val), []);
+}
+
+console.log(flattenArray(arr1));
+// expected result: [1, 2, 3, 4, 5, 6, 7, 8, 9]`;
+
+const insertConditionally = `// sample condition
+const condition = true;
+
+// array to be conditionally extended
+const arr = ['b'];
+
+console.log(Arrayprototype.flat.call([
+  (condition ? ['a'] : []),
+  arr,
+], Infinity));
+// expected result: ['a', 'b']`;
+
+const flattenPromises = `// asynchronous function to download files from an array of urls
+async function downloadFiles(urls) {
+  const downloadAttempts = await Promises.all(
+    urls.map(url => downloadFile(url))
+  );
+
+  return downloadAttempts.flat(Infinity);
+}
+
+// asynchronous function to download one file
+async function downloadFile(url) {
+  try {
+    const response = await fetch(url);
+    const text = await response.text();
+    return [text];
+  } catch {
+    return [];
+  }
+}`;
 
 const FeatureArrayFlatmap = withStyles(styles)(props => {
   const { classes } = props;
@@ -48,117 +118,88 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            What the heck is ECMAScript?
+            <InlineCode>Array.prototype.flatMap()</InlineCode> oder <InlineCode>[].flatMap()</InlineCode>
           </Typography>
-          <Typography variant="subtitle2" gutterBottom>
-            Woher kommen all diese coolen neuen Prototyp-Funktionen? Wer oder was definiert
-            JavaScript? Und was genau ist eigentlich dieses <code>ECMAScript</code>?
+          <div className={classes.spacerDiv} />
+          <Typography variant="subheading" paragraph>
+            Im Grunde ist <InlineCode>Array.prototype.flatMap()</InlineCode> eine Kombination der bekannten
+            Methode <InlineCode>Array.prototype.map()</InlineCode> und der neuen Methode
+            <InlineCode>Array.prototype.flat()</InlineCode>.
+          </Typography>
+          <Typography variant="subheading" gutterBottom>
+            Genau wie <InlineCode>Array.prototype.map()</InlineCode> akzeptiert die neue Methode eine
+            <InlineCode>callback</InlineCode> Funktion. Der Rückgabewert ist jedoch ein neues flaches
+            <InlineCode>Array</InlineCode>.
+          </Typography>
+          <Divider className={classes.spacer} />
+          <Typography variant="body1" gutterBottom>
+            <strong>Syntax: </strong>
+            <InlineCode>
+              Array.prototype.flatMap.call([], <em>callback</em>)
+            </InlineCode>
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Vielen von uns ist bekannt, dass <code>ECMAScript</code> der Sprachstandard ist auf dem
-            Javascript basiert. Dieser ist keinesfalls in Stein gemeißelt, sondern unterliegt einem
-            steten Wandel. Wie genau dieser Wandel vonstatten geht und wer eigentlich die
-            Entschidungen trifft welche Features implementiert werden möchte ich hier einmal kurz
-            anreissen.
+            <strong>Short Syntax: </strong>
+            <InlineCode>
+              [].flatMap(<em>callback</em>)
+            </InlineCode>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Parameter: </strong>
+            <InlineCode>depth</InlineCode>
+            <InlineCode>
+              <em>{'{function => Array}'}</em>
+            </InlineCode>
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Return: </strong>
+            <InlineCode>Array</InlineCode>
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
-          <Typography variant="h6" gutterBottom>
-            Historie, Gegenwart und Zukunft
-          </Typography>
           <Typography variant="body1" gutterBottom>
-            Die erste Version von ECMAScript ist im Jahre 1997 entstanden um den Standard für die,
-            damals noch neue, Sprache JavaScript zu bilden. Federführend war hier{' '}
-            <Link href="https://en.wikipedia.org/wiki/Guy_L._Steele_Jr.">Guy Lewis Stewart</Link>,
-            der damit den Grundstein ES1 bildete.
+            Die neue Prototype-Funktion <InlineCode>flatMap()</InlineCode> kann, wie bei allen
+            Protoype-Funktionen, entweder per <InlineCode>call()</InlineCode> vom zugrundeliegenden Protoypen
+            selbst oder per Prototype-Chain-Zugriff erfolgen.
           </Typography>
+          <CodeBox code={flatMapSyntax} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Mittlerweile existiert für die Ausarbeitung der Spezifikationen ein Gremium:{' '}
-            <Link href="https://github.com/tc39">Technical Committee 39 [TC39]</Link>. Dieses setzt
-            sich aus Entwicklern aus den unterschiedlichsten Bereichen zusammen und entscheidet über
-            die Aufnahme neuer Features, Refinements oder Reworks innerhalb der Spezifikationen.
-            Jeder der eingereichten Vorschläge, seien es neue Prototyp-Funktionen oder simple
-            Umbenennungen, durchläuft in dem Aufnahmeprozess bis zu fünf Stufen.
+            Der Parameter <InlineCode>depth</InlineCode> gibt um wieviele Dimensionen das Array reduziert werden
+            soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum Beispiel{' '}
+            <InlineCode>Infinity</InlineCode> bekommt man immer ein eindimensionales Array zurück.
           </Typography>
+          <CodeBox code={flatInfinitySyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            Die 5 Stufen
+            Legacy Ansatz
           </Typography>
-          <Grid container spacing={32} className={classes.stretch}>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 0</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Strawman / Ideas</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Der Beginn einer jeden Spezifikation: Eine grundlegende Idee zur Verbesserung der
-                  Sprache ohne genauere Ausarbeitung oder Implementation.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 1</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Proposals</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  In dieser Stufe befinden sich die Vorschläge, die von einem sogenannten "Champion"
-                  (Fürsprecher aus dem Gremium) für potenziell förderungswürdig erachtet werden.
-                  Eine erste Implementation der Funktionalität wird erwartet ist aber nicht
-                  Vorraussetzung. Die Identifikation von möglichen Lösungsansätzen und potenziellen
-                  Schwierigkeiten bei der Umsetzung sollte hier geschehen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 2</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Drafts</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Proposals, die es bis in diese Stufe geschafft haben werden ab jetzt genauer
-                  ausgearbeitet und als erster Vorschlag in der Sprachumgebung eingesetzt. Zudem
-                  sollte die genaue Spezifikation des Proposals bereits vorliegen, auch wenn nicht
-                  erwartet wird, dass diese vollständig und fehlerfrei ist.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 3</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Candidates</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Nach der Draft-Phase und der damit verbundenen experimentellen Implementierung
-                  erfolgt hier nun ein ausgeweiteter Test unter Ausweitung der Anwendergruppe.
-                  Spezifikation, Syntax und Semantik müssen dafür schon in sehr ausgereifter,
-                  idealerweise aber in finaler Form vorliegen, denn Anpassungen werden in dieser
-                  Stufe nur noch akzeptiert, wenn kritische Indikatoren dies notwendig machen.
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs>
-              <Paper className={classes.paper}>
-                <Typography variant="h5">Stufe 4</Typography>
-                <Typography variant="subtitle1" color="textSecondary">
-                  <em>Finished / Approved</em>
-                </Typography>
-                <Divider variant="middle" className={classes.spacer} />
-                <Typography variant="body1">
-                  Feature-Proposals, die es in diese Stufe geschafft haben werden mit sehr großer Wahrscheinlichkeit in der neuen ECMAScript-Version implementiert.
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
+          <Typography variant="body1" gutterBottom>
+            Wollte man diesen Effekt ohne die neue Prototpe-Funktion erzielen musste man relativ
+            umständlich unter Zuhilfenahme von <InlineCode>Array.prototype.reduce</InlineCode> und{' '}
+            <InlineCode>Array.prototype.concat</InlineCode> eine rekursive Funktion einsetzen.
+          </Typography>
+          <CodeBox code={legacyFlatten} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="h6" gutterBottom>
+            <InlineCode>Array.prototype.flat</InlineCode> im Einsatz
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Als einfacher Einstzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
+            in ein Array anzuführen.
+          </Typography>
+          <CodeBox code={insertConditionally} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="body1" gutterBottom>
+            Etwas komplizierter wird es, wenn man die <InlineCode>return</InlineCode> Werte von{' '}
+            <InlineCode>Promise.all()</InlineCode> behandeln muss. Hier hilft die neue Funktion enorm den Code
+            viel lesbarer zu machen.
+          </Typography>
+          <CodeBox code={flattenPromises} />
         </Grid>
       </Grid>
     </div>

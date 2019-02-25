@@ -4,11 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { prism as prismStyle } from 'react-syntax-highlighter/dist/styles/prism';
-
 import { withRouter } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+
+import CodeBox from 'components/codeBox';
+import InlineCode from 'components/inlineCode';
 
 const styles = theme => ({
   button: {
@@ -45,14 +45,6 @@ const styles = theme => ({
     alignItems: 'stretch',
   },
 });
-
-const CodeBox = ({ code }) => {
-  return (
-    <SyntaxHighlighter language="javascript" style={prismStyle}>
-      {code}
-    </SyntaxHighlighter>
-  );
-};
 
 const flatSyntax = `// create new nested Array
 const nestedArray = [1, 2, 3, [4, [5, 6, [7, 8], 9]]];
@@ -123,52 +115,53 @@ const FeatureArrayFlat = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <code>Array.prototype.flat()</code> oder <code>[].flat()</code>
+            <InlineCode>Array.prototype.flat()</InlineCode> oder <InlineCode>[].flat()</InlineCode>
           </Typography>
           <div className={classes.spacerDiv} />
-          <Typography variant="subheading" gutterBottom>
+          <Typography variant="body1" gutterBottom>
             Mithilfe dieser neuen prototype-funktion ist es möglich ein in mehrere Ebenen
-            verschachteltes <code>Array</code> auf eine Ebene zu reduzieren. Der Rückgabewert ist
-            ein neues (flaches) <code>Array</code>.
+            verschachteltes <InlineCode>Array</InlineCode> auf eine Ebene zu reduzieren. Der
+            Rückgabewert ist ein neues (flaches) <InlineCode>Array</InlineCode>.
           </Typography>
           <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
-            <code>
+            <InlineCode>
               Array.prototype.flat.call([], <em>depth</em>)
-            </code>
+            </InlineCode>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Short Syntax: </strong>
-            <code>
+            <InlineCode>
               [].flat(<em>depth</em>)
-            </code>
+            </InlineCode>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Parameter: </strong>
-            <code>depth</code>
-            <code>
+            <InlineCode>depth</InlineCode>
+            <InlineCode>
               <em>{'{number = 1}'}</em>
-            </code>
+            </InlineCode>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Return: </strong>
-            <code>Array</code>
+            <InlineCode>Array</InlineCode>
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Die neue Prototype-Funktion <code>flat()</code> kann, wie bei allen Protoype-Funktionen,
-            entweder per <code>call()</code> vom Protoypen selbst oder per Prototype-Chain-Zugriff
-            erfolgen.
+            Die neue Prototype-Funktion <InlineCode>flat()</InlineCode> kann, wie bei allen
+            Protoype-Funktionen, entweder per <InlineCode>call()</InlineCode> vom Protoypen selbst
+            oder per Prototype-Chain-Zugriff erfolgen.
           </Typography>
           <CodeBox code={flatSyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Der Parameter <code>depth</code> gibt um wieviele Dimensionen das Array reduziert werden
-            soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum Beispiel{' '}
-            <code>Infinity</code> bekommt man immer ein eindimensionales Array zurück.
+            Der Parameter <InlineCode>depth</InlineCode> gibt um wieviele Dimensionen das Array
+            reduziert werden soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum
+            Beispiel <InlineCode>Infinity</InlineCode> bekommt man immer ein eindimensionales Array
+            zurück.
           </Typography>
           <CodeBox code={flatInfinitySyntax} />
         </Grid>
@@ -178,14 +171,14 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           </Typography>
           <Typography variant="body1" gutterBottom>
             Wollte man diesen Effekt ohne die neue Prototpe-Funktion erzielen musste man relativ
-            umständlich unter Zuhilfenahme von <code>Array.prototype.reduce</code> und{' '}
-            <code>Array.prototype.concat</code> eine rekursive Funktion einsetzen.
+            umständlich unter Zuhilfenahme von <InlineCode>Array.prototype.reduce</InlineCode> und
+            <InlineCode>Array.prototype.concat</InlineCode> eine rekursive Funktion einsetzen.
           </Typography>
           <CodeBox code={legacyFlatten} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <code>Array.prototype.flat</code> im Einsatz
+            <InlineCode>Array.prototype.flat</InlineCode> im Einsatz
           </Typography>
           <Typography variant="body1" gutterBottom>
             Als einfacher Einstzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
@@ -195,9 +188,9 @@ const FeatureArrayFlat = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Etwas komplizierter wird es, wenn man die <code>return</code> Werte von{' '}
-            <code>Promise.all()</code> behandeln muss. Hier hilft die neue Funktion enorm den Code
-            viel lesbarer zu machen.
+            Etwas komplizierter wird es, wenn man die <InlineCode>return</InlineCode> Werte von{' '}
+            <InlineCode>Promise.all()</InlineCode> behandeln muss. Hier hilft die neue Funktion
+            enorm den Code viel lesbarer zu machen.
           </Typography>
           <CodeBox code={flattenPromises} />
         </Grid>
