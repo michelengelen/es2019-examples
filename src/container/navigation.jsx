@@ -21,7 +21,7 @@ import { routeConfigs as config } from 'constants/routeConfigs';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
-const drawerWidth = 390;
+const drawerWidth = 420;
 
 const styles = theme => ({
   root: {
@@ -146,8 +146,8 @@ class Navigation extends PureComponent {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Grid container>
-            <Grid item lg={3} md={2} sm={false} />
-            <Grid item lg={6} md={8} sm={12}>
+            <Grid item lg={2} md={1} sm={false} />
+            <Grid item lg={8} md={10} sm={12}>
               {children}
             </Grid>
           </Grid>

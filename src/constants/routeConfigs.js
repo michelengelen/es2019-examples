@@ -54,10 +54,10 @@ export const routeConfigs = {
   },
   es2019Features_arraySortStability: {
     path: '/es2019/array-sort-stability',
-    name: 'Array.sort() stability',
+    name: 'Array.prototype.sort() stability',
     primary: (
       <span>
-        <Code>Array.prototype.sort</Code> Stabilitäts-Verbesserungen
+        <Code>Array.prototype.sort</Code> muss nun stabil in den Engines laufen
       </span>
     ),
     secondary: 'Champion: Mathias Bynens',

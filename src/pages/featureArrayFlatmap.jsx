@@ -86,13 +86,13 @@ var arr = [1, 2, 3, 4];
 arr.reduce((acc, x) => acc.concat([x * 2]), []);
 // expected result: [2, 4, 6, 8]`;
 
-const splitStrings = `let arr = ["ECMAScript 2019 has", "", "some awesome", "new Features"];
+const splitStrings = `const arr = ['flatMap() ', '', ' on arrays', 'is cool'];
 
-arr.map(x => x.split(" "));
-// [["ECMAScript"], ["2019"], ["has"], "", ["some"], ["awesome"], ["new"], ["Features"]]
+console.log(arr.map(x => x.split(' ')));
+// [['flatMap()', ''], [''], ['', 'on', 'arrays'], ['is', 'cool']]
 
-arr.flatMap(x => x.split(" "));
-// ["ECMAScript", "2019", "has", "", "some", "awesome", "new", "Features"]`;
+console.log(arr.flatMap(x => x.split(' ')));
+// ['flatMap()', '', '', '', 'on', 'arrays', 'is', 'cool']`;
 
 const FeatureArrayFlatmap = withStyles(styles)(props => {
   const { classes } = props;

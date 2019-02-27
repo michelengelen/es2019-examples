@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
+import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
@@ -50,49 +51,33 @@ const styles = theme => ({
   },
 });
 
-const flatMapSyntax = `// create new nested Array
-const arr = [1, 2, 3, 4];
+const trimStartSyntax = `// some sample string
+const str = '     In accordance to our developer-ancestors ';
 
-// call flatMap() "directly" from the array
-const newFlatmappedArray1 = arr.flatMap(x => [x, x * 2]);
+// call trimStart() directly from the string
+const newStr1 = str.trimStart();
 
-// call flat() from Prototype
-const newFlatmappedArray2 = Array.prototype.flatMap.call(arr, x => [x, x * 2]);`;
+// call trimStart() from Prototype
+const newStr2 = String.prototype.trimStart.call(str);`;
 
-const flatMapExamples = `// create new Array
-const arr = [1, 2, 3, 4];
+const trimEndSyntax = `// some sample string
+const str = 'lets just print "Hello World!" here.      ';
 
-// create callback function
-const doubleAndTripple = x => [x * 2, x * 3];
+// call trimEnd() directly from the string
+const newStr1 = str.trimEnd();
 
-console.log(arr.flatMap(doubleAndTripple);
-// expected result: [2, 3, 4, 6, 6, 9, 8, 12]`;
+// call trimEnd() from Prototype
+const newStr2 = String.prototype.trimEnd.call(str);`;
 
-const flatMapRecursive = `// create a nested Array
-const arr = [1, 2, [3, [4, 5]], 6];
+const concatStrings = `// some sample strings
+const str1 = '     What does the term ';
+const str2 = '        "Hello World!"      ';
+const str3 = ' mean to you?      ';
 
-// we want to perform the same operation on the nested arrays items
-const recursiveCallback = x =>
-  Array.isArray(x)
-    ? x.flatMap(recursiveCallback)
-    : [x * 2, x * 3];
-
-console.log(arr.flatMap(recursiveCallback));
-// expected result: [2, 3, 4, 6, 6, 9, 8, 12, 10, 15, 12, 18]`;
-
-const legacyFlatMap = `// before flatMap() the original array had to be reduce and concatinated
-var arr = [1, 2, 3, 4];
-
-arr.reduce((acc, x) => acc.concat([x * 2]), []);
-// expected result: [2, 4, 6, 8]`;
-
-const splitStrings = `let arr = ["ECMAScript 2019 has", "", "some awesome", "new Features"];
-
-arr.map(x => x.split(" "));
-// [["ECMAScript"], ["2019"], ["has"], "", ["some"], ["awesome"], ["new"], ["Features"]]
-
-arr.flatMap(x => x.split(" "));
-// ["ECMAScript", "2019", "has", "", "some", "awesome", "new", "Features"]`;
+// trim them both on one end
+console.log(str1.trimStart() + str2.trim() + str3.trimEnd());
+// expected result:
+// "What does the term Hello World!" mean to you?"`;
 
 const FeatureStringTrimExtension = withStyles(styles)(props => {
   const { classes } = props;
@@ -101,102 +86,117 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6">
-            <Code>String.prototype.trimStart()</Code> oder{' '}
-            <Code>"".trimStart()</Code>
+            <Code>String.prototype.trimStart()</Code> oder <Code>"".trimStart()</Code>
           </Typography>
           <div className={classes.spacerDiv} />
           <Typography variant="body1" paragraph>
-            Im Grunde ist <Code>Array.prototype.flatMap()</Code> eine Kombination der
-            bekannten Methode <Code>Array.prototype.map()</Code> und der neuen Methode
-            <Code>Array.prototype.flat()</Code>.
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Genau wie <Code>Array.prototype.map()</Code> akzeptiert die neue Methode
-            eine
-            <Code>callback</Code> Funktion. Der Rückgabewert ist jedoch ein neues
-            flaches
-            <Code>Array</Code>.
+            <Code>trimStart()</Code> bietet eine Erweiterung des String-Prototypen um den Beginn
+            eines Strings von überflüssigen Leerzeichen zu bereinigen.
           </Typography>
           <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
-            <Code>
-              Array.prototype.flatMap.call([], <em>callback</em>)
-            </Code>
+            <Code>String.prototype.trimStart.call("")</Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Short Syntax: </strong>
-            <Code>
-              [].flatMap(<em>callback</em>)
-            </Code>
+            <Code>"".trimStart()</Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Parameter: </strong>
-            <Code>depth</Code>
-            <Code>
-              <em>{'{function => Array}'}</em>
-            </Code>
+            <strong>Parameter: </strong>keine
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Return: </strong>
-            <Code>Array</Code>
+            <Code>String</Code>
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Die neue Prototype-Funktion <Code>flatMap()</Code> kann, wie bei allen
-            Protoype-Funktionen, entweder per <Code>call()</Code> vom zugrundeliegenden
-            Protoypen selbst oder per Prototype-Chain-Zugriff erfolgen.
+            Die neue Prototype-Funktion <Code>trimStart()</Code> kann, wie bei allen
+            Protoype-Funktionen, entweder per <Code>call()</Code> vom zugrundeliegenden Protoypen
+            selbst oder per Prototype-Chain-Zugriff erfolgen.
           </Typography>
-          <CodeBox code={flatMapSyntax} />
+          <CodeBox code={trimStartSyntax} />
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="h6">
+            <Code>String.prototype.trimEnd()</Code> oder <Code>"".trimEnd()</Code>
+          </Typography>
+          <div className={classes.spacerDiv} />
+          <Typography variant="body1" paragraph>
+            <Code>trimEnd()</Code> bietet eine Erweiterung des String-Prototypen um den Beginn eines
+            Strings von überflüssigen Leerzeichen zu bereinigen.
+          </Typography>
+          <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
-            Kennt man also den Datentypen innerhalb eines Arrays kann man eine sehr einfache
-            Bearbeitung mittels der <Code>callback</Code> Funktion erzielen. Es ist in
-            den meisten Anwendungsfällen jedoch sinnvoll schon vorher eine eigene Funktion zu
-            definieren, die einfach an die Methode übergeben wird.
+            <strong>Syntax: </strong>
+            <Code>String.prototype.trimEnd.call("")</Code>
           </Typography>
-          <CodeBox code={flatMapExamples} />
-          <blockquote>
-            <Typography variant="h6" gutterBottom>
-              <span role="img" aria-label="warning-icon">⚠</span>️ Bitte beachten:
-            </Typography>
-            <Divider className={classes.spacer} />
-            <Typography variant="body1">
-              Es gibt bei <Code>flatMap()</Code> keinen Parameter für die Tiefe der
-              Verschachtelung, die reduziert werden soll.
-            </Typography>
-          </blockquote>
           <Typography variant="body1" gutterBottom>
-            Kennt man die Tiefe der Veschachtelung ist dies eine sehr einfache Lösung. Kennt man sie
-            jedoch nicht muss man sich mit einer kleinen rekursiven Implementation aushelfen. Da
-            diese aber auf dem Prototypen basiert ist auch das eigentlich kein sehr kompliziertes
-            Unterfangen.
+            <strong>Short Syntax: </strong>
+            <Code>"".trimEnd()</Code>
           </Typography>
-          <CodeBox code={flatMapRecursive} />
+          <Typography variant="body1" gutterBottom>
+            <strong>Parameter: </strong>keine
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>Return: </strong>
+            <Code>String</Code>
+          </Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.section}>
+          <Typography variant="body1" gutterBottom>
+            Die neue Prototype-Funktion <Code>trimEnd()</Code> kann, wie bei allen
+            Protoype-Funktionen, entweder per <Code>call()</Code> vom zugrundeliegenden Protoypen
+            selbst oder per Prototype-Chain-Zugriff erfolgen.
+          </Typography>
+          <CodeBox code={trimEndSyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            Legacy Ansatz
+            <Code>{'String.prototype.{trimStart() | trimEnd()'}</Code> im Einsatz
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            In einer Zeit vor ECMAScript 2019 war diese Implementierung relativ umständlich und
-            wenig leserlich.
+          <Typography variant="body1" parargraph>
+            Der String-Prototyp hatte schon vorher eine Methode (<Code>trim()</Code>) die
+            überflüssige Leerzeichen in einem String an beiden Enden bereinigte. Daher scheinen
+            diese beiden Erweiterungen eher obsolet, denn hilfreich. Dennoch bieten sie uns als
+            Entwickler eine feinere Kontrolle über die Bearbeitung von Strings, die zuweilen recht
+            hilfreich sein kann.
           </Typography>
-          <CodeBox code={legacyFlatMap} />
+          <CodeBox code={concatStrings} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <Code>Array.prototype.flat</Code> im Einsatz
+            Welche Zeichen gelten als "Whitespace"?
           </Typography>
-          <Typography variant="body1" gutterBottom>
-            Wie aber kann man diese schöne neue Funktion sinnvoll einsetzen? Als sehr simples
-            Beispiel ist zum Beispiel der Rückgabewert von{' '}
-            <Code>String.prototype.split()</Code> immer ein Array. Hat man also eine
-            bestimmte Anzahl an Sätzen/Schnippseln kann man diese mithilfe von{' '}
-            <Code>flatMap()</Code> sehr einfach normalisieren und bekommt ein sauberes
-            und flaches Array mit den einzelnen Wörtern zurück.
+          <Typography component="div" variant="body1" gutterBottom>
+            <Link href="https://tc39.github.io/ecma262/#sec-white-space">
+              Whitespace code points
+            </Link>
+            <ul>
+              <li>{'<TAB> (CHARACTER TABULATION, U+0009)'}</li>
+              <li>{'<VT> (LINE TABULATION, U+000B)'}</li>
+              <li>{'<FF> (FORM FEED, U+000C)'}</li>
+              <li>{'<SP> (SPACE, U+0020)'}</li>
+              <li>{'<NBSP> (NO-BREAK SPACE, U+00A0)'}</li>
+              <li>
+                {
+                  '<ZWNBSP> (ZERO WIDTH NO-BREAK SPACE, U+FEFF) Any other Unicode character with the property White_Space in category Space_Separator (Zs)'
+                }
+              </li>
+            </ul>
           </Typography>
-          <CodeBox code={splitStrings} />
+          <Typography component="div" variant="body1" gutterBottom>
+            <Link href="https://tc39.github.io/ecma262/#sec-line-terminators">
+              LineTerminator code points
+            </Link>
+            <ul>
+              <li>{'<LF> (LINE FEED, U+000A)'}</li>
+              <li>{'<CR> (CARRIAGE RETURN, U+000D)'}</li>
+              <li>{'<LS> (LINE SEPARATOR, U+2028)'}</li>
+              <li>{'<PS> (PARAGRAPH SEPARATOR, U+2029)'}</li>
+            </ul>
+          </Typography>
         </Grid>
       </Grid>
     </div>

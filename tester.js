@@ -1,8 +1,11 @@
-const arr = [1, 2, [3, [4, 5]], [], 6];
+function logId(person) {
+  // set a default value beforehand
+  let id = person.data.id;
+  try {
+    // try to store the id
+    id = person.data.id;
+  } catch {}
+  console.log(id);
+}
 
-const recursiveCallback = x =>
-  Array.isArray(x)
-    ? x.flatMap(recursiveCallback)
-    : [x * 2, x * 3];
-
-console.log(arr.flatMap(recursiveCallback));
+logId({});
