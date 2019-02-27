@@ -127,18 +127,18 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
             <Code>
-              Array.prototype.flat.call([], <em>depth</em>)
+              Array.prototype.flat.call([], <em>[depth]</em>)
             </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Short Syntax: </strong>
             <Code>
-              [].flat(<em>depth</em>)
+              [].flat(<em>[depth]</em>)
             </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Parameter: </strong>
-            <Code>depth</Code>
+            <Code>depth</Code> (optional)
             <Code>
               <em>{'{number = 1}'}</em>
             </Code>

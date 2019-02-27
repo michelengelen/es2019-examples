@@ -20,6 +20,7 @@ import FeatureArrayFlatmap from 'pages/featureArrayFlatmap';
 import FeatureStringTrimExtension from 'pages/featureStringTrimExtension';
 import FeatureSymbolDescription from 'pages/featureSymbolDescription';
 import FeatureOptionalCatchBinding from 'pages/featureOptionalCatchBinding';
+import FeatureArraySortStability from 'pages/featureArraySortStability';
 
 import { routeConfigs as config } from 'constants/routeConfigs';
 
@@ -73,6 +74,12 @@ const paths = [
       {
         key: 'es2019Features_optionalCatch',
         component: FeatureOptionalCatchBinding,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_arraySortStability',
+        component: FeatureArraySortStability,
         icon: <CodeIcon />,
         exact: true,
       },
