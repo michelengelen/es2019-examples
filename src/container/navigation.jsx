@@ -58,10 +58,33 @@ class Navigation extends PureComponent {
 
     this.renderNavigationList = this.renderNavigationList.bind(this);
     this.handleSubnavClick = this.handleSubnavClick.bind(this);
+    this.checkActiveSubnav = this.checkActiveSubnav.bind(this);
 
     this.state = {
       openSubnav: '',
     };
+  }
+
+  componentDidMount() {
+    this.checkActiveSubnav();
+  }
+
+  checkActiveSubnav() {
+    const { openSubnav } = this.state;
+    const { paths, location } = this.props;
+
+    const parentPaths = paths
+      .filter(path => Array.isArray(path.subPaths))
+      .map(path => ({ key: path.key, basePath: config[path.key].basePath }));
+
+    const currentBasePath = '/' + location.pathname.split('/')[1];
+    const activeParent = parentPaths.find(parent => parent.basePath === currentBasePath);
+
+    if (!!activeParent && openSubnav !== activeParent.key) {
+      this.setState({
+        openSubnav: activeParent.key
+      })
+    }
   }
 
   handleSubnavClick(key) {
@@ -70,14 +93,6 @@ class Navigation extends PureComponent {
         openSubnav: key !== prevState.openSubnav ? key : '',
       }));
     };
-  }
-
-  componentDidMount() {
-    const { openSubnav } = this.state;
-    const { paths, location } = this.props;
-
-    const parentPaths = paths.filter(path => Array.isArray(path.subPaths));
-    // const childPaths =
   }
 
   renderNavigationList(paths, nested = false) {
@@ -119,6 +134,7 @@ class Navigation extends PureComponent {
   }
 
   render() {
+    console.log('### open: ', this.state.openSubnav)
     const { classes, location, children, paths } = this.props;
 
     const currentPathKey = Object.keys(config).filter(

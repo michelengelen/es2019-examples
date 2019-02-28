@@ -11,10 +11,11 @@ export const routeConfigs = {
     name: 'ESCMAScript Historie',
   },
   es2019Features: {
+    basePath: '/es2019',
     name: 'ECMAScript 2019',
   },
   es2019Features_overview: {
-    path: '/es2019',
+    path: '/es2019/overview',
     name: 'ES2019 Features',
   },
   es2019Features_arrayFlat: {
