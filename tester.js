@@ -1,2 +1,3 @@
-const sourceCode = '"\u2028"';
-console.log(eval(sourceCode));
+class C { foo() { /*hello*/ } }
+console.log(C.prototype.foo.toString());
+// expected result: 'foo() { /*hello*/ }'
