@@ -1,3 +1,2 @@
-const months = ['March', 'Jan', 'Feb', 'Dec'];
-
-console.log(!!months.find(month => typeof month === 'string'));
+const sourceCode = '"\u2028"';
+console.log(eval(sourceCode));

@@ -21,6 +21,8 @@ import FeatureStringTrimExtension from 'pages/featureStringTrimExtension';
 import FeatureSymbolDescription from 'pages/featureSymbolDescription';
 import FeatureOptionalCatchBinding from 'pages/featureOptionalCatchBinding';
 import FeatureArraySortStability from 'pages/featureArraySortStability';
+import FeatureJsonStringify from 'pages/featureJsonStringify';
+import FeatureJsonSuperset from 'pages/featureJsonSuperset';
 
 import { routeConfigs as config } from 'constants/routeConfigs';
 
@@ -80,6 +82,18 @@ const paths = [
       {
         key: 'es2019Features_arraySortStability',
         component: FeatureArraySortStability,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_jsonStringify',
+        component: FeatureJsonStringify,
+        icon: <CodeIcon />,
+        exact: true,
+      },
+      {
+        key: 'es2019Features_jsonSuperset',
+        component: FeatureJsonSuperset,
         icon: <CodeIcon />,
         exact: true,
       },
