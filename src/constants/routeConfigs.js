@@ -26,7 +26,7 @@ export const routeConfigs = {
   },
   es2019Features_arrayFlatmap: {
     path: '/es2019/array-flatmap',
-    name: 'Array.prototype.flatmap()',
+    name: 'Array.prototype.flatMap()',
     primary: <Code>Array.prototype.flatMap</Code>,
     secondary: 'Champion: Darien Maillet Valentine',
     type: 0,

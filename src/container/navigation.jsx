@@ -72,6 +72,14 @@ class Navigation extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    const { openSubnav } = this.state;
+    const { paths, location } = this.props;
+
+    const parentPaths = paths.filter(path => Array.isArray(path.subPaths));
+    // const childPaths =
+  }
+
   renderNavigationList(paths, nested = false) {
     const { classes, history, location } = this.props;
     const { openSubnav } = this.state;

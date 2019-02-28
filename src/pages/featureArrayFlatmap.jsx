@@ -186,7 +186,7 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <Code>Array.prototype.flat</Code> im Einsatz
+            <Code>Array.prototype.flatMap</Code> im Einsatz
           </Typography>
           <Typography variant="body1" gutterBottom>
             Wie aber kann man diese schöne neue Funktion sinnvoll einsetzen? Als sehr simples
