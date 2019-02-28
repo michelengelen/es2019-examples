@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import { withRouter } from 'react-router-dom';
@@ -83,7 +82,7 @@ const FeatureJsonSuperset = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            <Code>JSON</Code> String Literale können diese Zeichen enthalten:
+            <Code>JSON</Code> String Literale hingegen können diese Zeichen enthalten:
           </Typography>
           <CodeBox code={jsonSupersetAfter} />
         </Grid>

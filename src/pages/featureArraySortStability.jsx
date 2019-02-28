@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
@@ -86,14 +85,14 @@ const FeatureArraySortStability = withStyles(styles)(props => {
             die Requirements an einer bereits bestehenden, denn in der Vergangenheit hat sich
             gezeigt, dass <Code>Array.prototype.sort</Code> von den Browser-Engines unterschiedlich
             implementiert wurde. Und das leider nicht immer in einer stabilen Form. Besonders bei
-            Arrays mit einer Länge über 512 Einträgen haben einige Engines eine andere
-            Sortiermethode angewandt, die in einigen Fällen zu Fehlern führte.
+            Arrays mit einer Länge über 512 Einträgen haben einige Engines einen anderen
+            Sortier-Algorithmus angewandt, der in einigen Fällen zu Fehlern führte.
           </Typography>
           <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
             <strong>Syntax: </strong>
             <Code>
-              Array.prototype.flatMap.sort(<em>[compareFunction]</em>)
+              Array.prototype.sort(<em>[compareFunction]</em>)
             </Code>
           </Typography>
           <Typography variant="body1" gutterBottom>
@@ -106,12 +105,8 @@ const FeatureArraySortStability = withStyles(styles)(props => {
             <strong>Parameter: </strong>
             <Code>compareFunction</Code> (optional)
             <Code>
-              <em>{'{function => Array}'}</em>
+              <em>{'{function => x < 0 || x === 0 || x > 0}'}</em>
             </Code>
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            <strong>Return: </strong>
-            <Code>Array</Code>
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>

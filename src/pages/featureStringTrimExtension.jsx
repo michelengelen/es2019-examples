@@ -154,9 +154,9 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <Code>{'String.prototype.{trimStart() | trimEnd()'}</Code> im Einsatz
+            <Code>{'String.prototype.{trimStart() | trimEnd()}'}</Code> im Einsatz
           </Typography>
-          <Typography variant="body1" parargraph>
+          <Typography variant="body1" paragraph>
             Der String-Prototyp hatte schon vorher eine Methode (<Code>trim()</Code>) die
             überflüssige Leerzeichen in einem String an beiden Enden bereinigte. Daher scheinen
             diese beiden Erweiterungen eher obsolet, denn hilfreich. Dennoch bieten sie uns als

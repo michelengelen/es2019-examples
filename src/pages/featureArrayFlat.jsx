@@ -120,8 +120,8 @@ const FeatureArrayFlat = withStyles(styles)(props => {
           <div className={classes.spacerDiv} />
           <Typography variant="body1" gutterBottom>
             Mithilfe dieser neuen prototype-funktion ist es möglich ein in mehrere Ebenen
-            verschachteltes <Code>Array</Code> auf eine Ebene zu reduzieren. Der
-            Rückgabewert ist ein neues (flaches) <Code>Array</Code>.
+            verschachteltes <Code>Array</Code> auf eine Ebene zu reduzieren. Der Rückgabewert ist
+            ein neues (flaches) <Code>Array</Code>.
           </Typography>
           <Divider className={classes.spacer} />
           <Typography variant="body1" gutterBottom>
@@ -150,18 +150,17 @@ const FeatureArrayFlat = withStyles(styles)(props => {
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Die neue Prototype-Funktion <Code>flat()</Code> kann, wie bei allen
-            Protoype-Funktionen, entweder per <Code>call()</Code> vom Protoypen selbst
-            oder per Prototype-Chain-Zugriff erfolgen.
+            Die neue Prototype-Funktion <Code>flat()</Code> kann, wie bei allen Protoype-Funktionen,
+            entweder per <Code>call()</Code> vom Protoypen selbst oder per Prototype-Chain-Zugriff
+            erfolgen.
           </Typography>
           <CodeBox code={flatSyntax} />
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
-            Der Parameter <Code>depth</Code> gibt um wieviele Dimensionen das Array
-            reduziert werden soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum
-            Beispiel <Code>Infinity</Code> bekommt man immer ein eindimensionales Array
-            zurück.
+            Der Parameter <Code>depth</Code> gibt um wieviele Dimensionen das Array reduziert werden
+            soll - immer ausgehend von der niedrigsten Dimension. Wählt man zum Beispiel{' '}
+            <Code>Infinity</Code> bekommt man immer ein eindimensionales Array zurück.
           </Typography>
           <CodeBox code={flatInfinitySyntax} />
         </Grid>
@@ -175,13 +174,17 @@ const FeatureArrayFlat = withStyles(styles)(props => {
             <Code>Array.prototype.concat</Code> eine rekursive Funktion einsetzen.
           </Typography>
           <CodeBox code={legacyFlatten} />
+          <Typography variant="body1" gutterBottom>
+            Allerdings ist in dieser einfachen Implementierung noch nicht die Tiefe der Bearbeitung
+            berücksichtigt.
+          </Typography>
         </Grid>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
             <Code>Array.prototype.flat</Code> im Einsatz
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Als einfacher Einstzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
+            Als einfacher Einsatzzweck wäre zum Beispiel das konditionelle Hinzufügen eines Eintrags
             in ein Array anzuführen.
           </Typography>
           <CodeBox code={insertConditionally} />
@@ -189,8 +192,8 @@ const FeatureArrayFlat = withStyles(styles)(props => {
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
             Etwas komplizierter wird es, wenn man die <Code>return</Code> Werte von{' '}
-            <Code>Promise.all()</Code> behandeln muss. Hier hilft die neue Funktion
-            enorm den Code viel lesbarer zu machen.
+            <Code>Promise.all()</Code> behandeln muss. Hier hilft die neue Funktion enorm den Code
+            viel lesbarer zu machen.
           </Typography>
           <CodeBox code={flattenPromises} />
         </Grid>

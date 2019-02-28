@@ -101,20 +101,17 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
       <Grid container className={classes.content} spacing={24}>
         <Grid item xs={12} className={classes.section}>
           <Typography variant="h6" gutterBottom>
-            <Code>Array.prototype.flatMap()</Code> oder{' '}
-            <Code>[].flatMap()</Code>
+            <Code>Array.prototype.flatMap()</Code> oder <Code>[].flatMap()</Code>
           </Typography>
           <div className={classes.spacerDiv} />
           <Typography variant="body1" paragraph>
-            Im Grunde ist <Code>Array.prototype.flatMap()</Code> eine Kombination der
-            bekannten Methode <Code>Array.prototype.map()</Code> und der neuen Methode
+            Im Grunde ist <Code>Array.prototype.flatMap()</Code> eine Kombination der bekannten
+            Methode <Code>Array.prototype.map()</Code> und der neuen Methode
             <Code>Array.prototype.flat()</Code>.
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Genau wie <Code>Array.prototype.map()</Code> akzeptiert die neue Methode
-            eine
-            <Code>callback</Code> Funktion. Der Rückgabewert ist jedoch ein neues
-            flaches
+            Genau wie <Code>Array.prototype.map()</Code> akzeptiert die neue Methode eine
+            <Code>callback</Code> Funktion. Der Rückgabewert ist jedoch ein neues flaches
             <Code>Array</Code>.
           </Typography>
           <Divider className={classes.spacer} />
@@ -132,7 +129,7 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
           </Typography>
           <Typography variant="body1" gutterBottom>
             <strong>Parameter: </strong>
-            <Code>depth</Code>
+            <Code>callback</Code>
             <Code>
               <em>{'{function => Array}'}</em>
             </Code>
@@ -145,25 +142,28 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
         <Grid item xs={12} className={classes.section}>
           <Typography variant="body1" gutterBottom>
             Die neue Prototype-Funktion <Code>flatMap()</Code> kann, wie bei allen
-            Protoype-Funktionen, entweder per <Code>call()</Code> vom zugrundeliegenden
-            Protoypen selbst oder per Prototype-Chain-Zugriff erfolgen.
+            Protoype-Funktionen, entweder per <Code>call()</Code> vom zugrundeliegenden Protoypen
+            selbst oder per Prototype-Chain-Zugriff erfolgen.
           </Typography>
           <CodeBox code={flatMapSyntax} />
           <Typography variant="body1" gutterBottom>
             Kennt man also den Datentypen innerhalb eines Arrays kann man eine sehr einfache
-            Bearbeitung mittels der <Code>callback</Code> Funktion erzielen. Es ist in
-            den meisten Anwendungsfällen jedoch sinnvoll schon vorher eine eigene Funktion zu
-            definieren, die einfach an die Methode übergeben wird.
+            Bearbeitung mittels der <Code>callback</Code> Funktion erzielen. Es ist in den meisten
+            Anwendungsfällen jedoch sinnvoll schon vorher eine eigene Funktion zu definieren, die
+            einfach an die Methode übergeben wird.
           </Typography>
           <CodeBox code={flatMapExamples} />
           <blockquote>
             <Typography variant="h6" gutterBottom>
-              <span role="img" aria-label="warning-icon">⚠</span>️ Bitte beachten:
+              <span role="img" aria-label="warning-icon">
+                ⚠
+              </span>
+              ️ Bitte beachten:
             </Typography>
             <Divider className={classes.spacer} />
             <Typography variant="body1">
-              Es gibt bei <Code>flatMap()</Code> keinen Parameter für die Tiefe der
-              Verschachtelung, die reduziert werden soll.
+              Es gibt bei <Code>flatMap()</Code> keinen Parameter für die Tiefe der Verschachtelung,
+              die reduziert werden soll.
             </Typography>
           </blockquote>
           <Typography variant="body1" gutterBottom>
@@ -189,12 +189,11 @@ const FeatureArrayFlatmap = withStyles(styles)(props => {
             <Code>Array.prototype.flatMap</Code> im Einsatz
           </Typography>
           <Typography variant="body1" gutterBottom>
-            Wie aber kann man diese schöne neue Funktion sinnvoll einsetzen? Als sehr simples
-            Beispiel ist zum Beispiel der Rückgabewert von{' '}
-            <Code>String.prototype.split()</Code> immer ein Array. Hat man also eine
-            bestimmte Anzahl an Sätzen/Schnippseln kann man diese mithilfe von{' '}
-            <Code>flatMap()</Code> sehr einfach normalisieren und bekommt ein sauberes
-            und flaches Array mit den einzelnen Wörtern zurück.
+            Wie aber kann man diese schöne neue Funktion sinnvoll einsetzen? So ist zum Beispiel der
+            Rückgabewert von <Code>String.prototype.split()</Code> immer ein Array. Hat man also
+            eine Anzahl an Sätzen/Schnippseln, die in einzelne Worte aufgeteilt werden sollen kann
+            man diese mithilfe von <Code>flatMap()</Code> sehr einfach normalisieren und bekommt ein
+            sauberes und flaches Array mit den einzelnen Wörtern zurück.
           </Typography>
           <CodeBox code={splitStrings} />
         </Grid>

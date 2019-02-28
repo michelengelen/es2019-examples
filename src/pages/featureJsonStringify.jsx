@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import { withRouter } from 'react-router-dom';
@@ -68,12 +67,12 @@ const FeatureJsonStringify = withStyles(styles)(props => {
           <Typography variant="body1" paragraph>
             Gemäß des{' '}
             <Link href="https://tools.ietf.org/html/rfc8259#section-8.1">RFC for JSON</Link> muss
-            ein <em>öffentlicher</em> Austausch von JSON in UTF-8 kodierung erfolgen. Das kann zu
+            ein <em>öffentlicher</em> Austausch von JSON in UTF-8 Kodierung erfolgen. Das kann zu
             Problemen führen, wenn <Code>JSON.stringify()</Code> eingesetzt wird, denn es ist
             potentiell möglich, dass einzelne Zeichen in UTF-16 kodiert werden, die nicht wieder in
             UTF-8 umgewandelt werden können.
           </Typography>
-          <Typography variant="body2" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             Wie genau kann das aber passieren?
           </Typography>
           <Typography variant="body1" gutterBottom>
