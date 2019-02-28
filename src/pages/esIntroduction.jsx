@@ -110,7 +110,7 @@ class EsIntroduction extends PureComponent {
               Vielen von uns ist bekannt, dass <Code>ECMAScript</Code> der
               Sprachstandard ist auf dem Javascript basiert. Dieser ist keinesfalls in Stein
               gemeißelt, sondern unterliegt einem steten Wandel. Wie genau dieser Wandel vonstatten
-              geht und wer eigentlich die Entschidungen trifft welche Features implementiert werden
+              geht und wer eigentlich die Entscheidungen trifft welche Features implementiert werden
               möchte ich hier einmal kurz anreissen.
             </Typography>
           </Grid>

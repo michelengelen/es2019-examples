@@ -173,7 +173,7 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
             <Link href="https://tc39.github.io/ecma262/#sec-white-space">
               Whitespace code points
             </Link>
-            <ul>
+            <ul className="inlineUl">
               <li>{'<TAB> (CHARACTER TABULATION, U+0009)'}</li>
               <li>{'<VT> (LINE TABULATION, U+000B)'}</li>
               <li>{'<FF> (FORM FEED, U+000C)'}</li>
@@ -190,7 +190,7 @@ const FeatureStringTrimExtension = withStyles(styles)(props => {
             <Link href="https://tc39.github.io/ecma262/#sec-line-terminators">
               LineTerminator code points
             </Link>
-            <ul>
+            <ul className="inlineUl">
               <li>{'<LF> (LINE FEED, U+000A)'}</li>
               <li>{'<CR> (CARRIAGE RETURN, U+000D)'}</li>
               <li>{'<LS> (LINE SEPARATOR, U+2028)'}</li>

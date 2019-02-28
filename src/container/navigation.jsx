@@ -134,7 +134,6 @@ class Navigation extends PureComponent {
   }
 
   render() {
-    console.log('### open: ', this.state.openSubnav)
     const { classes, location, children, paths } = this.props;
 
     const currentPathKey = Object.keys(config).filter(

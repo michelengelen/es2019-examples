@@ -110,16 +110,16 @@ const EsHistory = props => {
           </Typography>
           <Typography component="div" variant="body1">
             ES5 führte einige neue Features ein, wie:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>JSON</Code> parsing/serialization
               </li>
               <li>
-                <Code>Array.prototype methods</Code> (wie <Code>map</Code>
-                und <Code>forEach</Code>)
+                <Code>Array.prototype</Code> Methoden (wie <Code>map()</Code>
+                und <Code>forEach()</Code>)
               </li>
               <li>
-                <Code>Object.prototype methods</Code> (wie{' '}
+                <Code>Object.prototype</Code> Methoden (wie{' '}
                 <Code>Object.keys()</Code>)
               </li>
               <li>
@@ -149,7 +149,7 @@ const EsHistory = props => {
           </Typography>
           <Typography component="div" variant="body1">
             Ein Auszug aus den neuen Features in ES2015:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>arrow functions</Code>
               </li>
@@ -173,7 +173,7 @@ const EsHistory = props => {
           </Typography>
           <Typography component="div" variant="body1">
             Im Falle von ES2016 sind es sogar nur 2 Features:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>Array.prototype.includes()</Code>
               </li>
@@ -191,7 +191,7 @@ const EsHistory = props => {
           </Typography>
           <Typography component="div" variant="body1">
             Major Features:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>async/await</Code> (asynchrone Funktionen)
               </li>
@@ -202,7 +202,7 @@ const EsHistory = props => {
               </li>
             </ul>
             Minor Features:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>Object.values</Code> und <Code>Object.entries</Code>
               </li>
@@ -219,13 +219,13 @@ const EsHistory = props => {
           <Divider variant="middle" className={classes.spacer} />
           <Typography component="div" variant="body1">
             Major Features:
-            <ul>
+            <ul className="inlineUl">
               <li>Asynchrone Iteration</li>
               <li>Rest/Spread Operatoren</li>
               <li>diverse RegExp Anpassungen</li>
             </ul>
             Minor Features:
-            <ul>
+            <ul className="inlineUl">
               <li>
                 <Code>Promise.prototype.finally()</Code>
               </li>

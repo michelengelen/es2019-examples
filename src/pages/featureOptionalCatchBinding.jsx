@@ -157,7 +157,7 @@ const FeatureOptionalCatchBinding = withStyles(styles)(props => {
           </Typography>
           <Typography component="div" variant="body1" gutterBottom>
             Es gibt im allgemeinen zwei grundsätzliche Anwendungsfälle:
-            <ul>
+            <ul className="inlineUl">
               <li>Man möchte den Fehler komplett ignorieren oder er ist schlicht nicht relevant</li>
               <li>
                 Falls es einen Fehler geben sollte ist der bereits bekannt und/oder wird allgemein
@@ -167,7 +167,7 @@ const FeatureOptionalCatchBinding = withStyles(styles)(props => {
           </Typography>
           <Typography component="div" variant="body1" gutterBottom>
             Ich rate jedoch davon ab die Fehler zu ignorieren, denn ...
-            <ul>
+            <ul className="inlineUl">
               <li>
                 ... auch wenn er nicht beachtet wird sollte man ihn in die Konsole loggen, falls es
                 doch einmal zu Problemen kommt

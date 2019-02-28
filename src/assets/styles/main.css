@@ -32,4 +32,8 @@ blockquote {
     background-color: #fff;
 }
 
+ul.inlineUl li {
+    margin-bottom: 5px;
+}
+
 
